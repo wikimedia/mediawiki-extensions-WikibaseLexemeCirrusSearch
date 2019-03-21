@@ -13,6 +13,8 @@ use Wikibase\Repo\Search\Fields\WikibaseIndexField;
  */
 abstract class LexemeKeywordField extends SearchIndexFieldDefinition implements WikibaseIndexField {
 
+	const NAME = "unknown_field";
+
 	public function __construct() {
 		parent::__construct( static::NAME, \SearchIndexField::INDEX_TYPE_KEYWORD );
 	}

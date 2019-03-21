@@ -36,7 +36,7 @@ class LexemeFullTextQueryBuilder implements FullTextQueryBuilder {
 	 */
 	private $entityIdParser;
 	/**
-	 * @var string User language code
+	 * @var Language User language code
 	 */
 	private $userLanguage;
 	/**
