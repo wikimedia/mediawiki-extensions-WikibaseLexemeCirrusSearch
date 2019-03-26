@@ -1,9 +1,9 @@
 {
-    "@metadata": {
-        "authors": [
-            "Janezdrilc",
-            "Dbc334"
-        ]
-    },
-    "wikibaselexemecirrus-rescore-profile-prefix": "Profil za ponovno oceno po avtomatskem dopolnjevanju iskanih gesel"
+	"@metadata": {
+		"authors": [
+			"Janezdrilc",
+			"Dbc334"
+		]
+	},
+	"wikibaselexemecirrus-rescore-profile-prefix": "Profil za ponovno oceno po avtomatskem dopolnjevanju iskanih gesel"
 }

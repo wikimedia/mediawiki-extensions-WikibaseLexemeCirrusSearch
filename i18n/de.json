@@ -1,10 +1,10 @@
 {
-    "@metadata": {
-        "authors": [
-            "Metalhead64",
-            "Lucas Werkmeister (WMDE)",
-            "Pascalco"
-        ]
-    },
-    "wikibaselexemecirrus-rescore-profile-prefix": "Rescore-Profil für die Präfix-(Vervollständigungs-)Suche"
+	"@metadata": {
+		"authors": [
+			"Metalhead64",
+			"Lucas Werkmeister (WMDE)",
+			"Pascalco"
+		]
+	},
+	"wikibaselexemecirrus-rescore-profile-prefix": "Rescore-Profil für die Präfix-(Vervollständigungs-)Suche"
 }

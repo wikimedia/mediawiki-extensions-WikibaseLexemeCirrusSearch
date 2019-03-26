@@ -1,13 +1,13 @@
 {
-    "@metadata": {
-        "authors": [
-            "Derugon",
-            "Gomoko",
-            "Wladek92",
-            "Yzelf",
-            "Oupsa",
-            "Tpt"
-        ]
-    },
-    "wikibaselexemecirrus-rescore-profile-prefix": "Noter de nouveau le profil pour la recherche de préfixe (complétude)"
+	"@metadata": {
+		"authors": [
+			"Derugon",
+			"Gomoko",
+			"Wladek92",
+			"Yzelf",
+			"Oupsa",
+			"Tpt"
+		]
+	},
+	"wikibaselexemecirrus-rescore-profile-prefix": "Noter de nouveau le profil pour la recherche de préfixe (complétude)"
 }

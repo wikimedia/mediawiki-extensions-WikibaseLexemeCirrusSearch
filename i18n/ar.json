@@ -1,10 +1,11 @@
 {
-    "@metadata": {
-        "authors": [
-            "محمد أحمد عبد الفتاح",
-            "ديفيد",
-            "Mr. Ibrahem"
-        ]
-    },
-    "wikibaselexemecirrus-rescore-profile-prefix": "إعادة حساب الملف الشخصي لبحث اللبادئة (انتهاء)"
+	"@metadata": {
+		"authors": [
+			"محمد أحمد عبد الفتاح",
+			"ديفيد",
+			"Mr. Ibrahem"
+		]
+	},
+	"wikibaselexemecirrus-desc": "ملحق لكسيم قاعدة ويكي لاستخدام وظيفة CirrusSearch",
+	"wikibaselexemecirrus-rescore-profile-prefix": "إعادة حساب الملف الشخصي لبحث اللبادئة (انتهاء)"
 }
