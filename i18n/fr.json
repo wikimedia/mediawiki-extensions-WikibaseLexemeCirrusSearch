@@ -9,5 +9,6 @@
 			"Tpt"
 		]
 	},
+	"wikibaselexemecirrus-desc": "Extension WikibaseLexeme pour utiliser la fonctionnalité CirrusSearch",
 	"wikibaselexemecirrus-rescore-profile-prefix": "Noter de nouveau le profil pour la recherche de préfixe (complétude)"
 }
