@@ -19,6 +19,7 @@ class LexemeCompletionSearchTest extends \MediaWikiTestCase {
 		if ( !class_exists( 'CirrusSearch' ) ) {
 			$this->markTestSkipped( 'CirrusSearch not installed, skipping' );
 		}
+		$this->setMwGlobals( 'wgLexemeUseCirrus', true );
 	}
 
 	/**

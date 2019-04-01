@@ -23,6 +23,21 @@
 	"config": {
 		"LexemeUseCirrus": {
 			"value": false
+		},
+		"LexemePrefixSearchProfile": {
+			"value": "lexeme_prefix"
+		},
+		"LexemePrefixSearchProfiles": {
+			"value": []
+		},
+		"LexemeRescoreFunctions": {
+			"value": []
+		},
+		"LexemePrefixRescoreProfile": {
+			"value": "lexeme_prefix"
+		},
+		"LexemeFulltextRescoreProfile": {
+			"value": "lexeme_fulltext"
 		}
 	},
 	"Hooks": {

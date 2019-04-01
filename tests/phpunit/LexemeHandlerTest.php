@@ -9,6 +9,7 @@ use Wikibase\DataModel\Entity\ItemId;
 use Wikibase\DataModel\Term\Term;
 use Wikibase\DataModel\Term\TermList;
 use Wikibase\Lexeme\MediaWiki\Content\LexemeContent;
+use Wikibase\Lexeme\MediaWiki\Content\LexemeHandler;
 use Wikibase\Lib\EntityTypeDefinitions;
 use Wikibase\Lexeme\Domain\Model\Lexeme;
 use Wikibase\Lexeme\Domain\Model\LexemeId;
@@ -48,9 +49,19 @@ class LexemeHandlerTest extends EntityHandlerTestCase {
 	 * @return EntityHandler
 	 */
 	protected function getHandler( SettingsArray $settings = null ) {
-		return $this->getWikibaseRepo( $settings )
-			->getEntityContentFactory()
-			->getContentHandlerForType( Lexeme::ENTITY_TYPE );
+		$wikibaseRepo = $this->getWikibaseRepo( $settings );
+		$globalRepo = WikibaseRepo::getDefaultInstance();
+		return new LexemeHandler(
+			$wikibaseRepo->getStore()->getTermIndex(),
+			$globalRepo->getEntityContentDataCodec(),
+			$wikibaseRepo->getEntityConstraintProvider(),
+			$wikibaseRepo->getValidatorErrorLocalizer(),
+			$wikibaseRepo->getEntityIdParser(),
+			$wikibaseRepo->getEntityIdLookup(),
+			$wikibaseRepo->getEntityLookup(),
+			$wikibaseRepo->getLanguageFallbackLabelDescriptionLookupFactory(),
+			$wikibaseRepo->getFieldDefinitionsByType( Lexeme::ENTITY_TYPE )
+		);
 	}
 
 	/**
@@ -117,9 +128,11 @@ class LexemeHandlerTest extends EntityHandlerTestCase {
 	protected function getEntityTypeDefinitions() {
 		return new EntityTypeDefinitions(
 			wfArrayPlus2d(
-				require __DIR__ . '/../../../WikibaseLexeme/WikibaseLexeme.entitytypes.php',
-				require __DIR__ . '/../../../WikibaseLexeme/WikibaseLexeme.entitytypes.repo.php',
-				require __DIR__ . '/../../WikibaseSearch.entitytypes.repo.php'
+				require __DIR__ . '/../../WikibaseSearch.entitytypes.repo.php',
+				array_merge_recursive(
+					require __DIR__ . '/../../../WikibaseLexeme/WikibaseLexeme.entitytypes.php',
+					require __DIR__ . '/../../../WikibaseLexeme/WikibaseLexeme.entitytypes.repo.php'
+				)
 			)
 		);
 	}
