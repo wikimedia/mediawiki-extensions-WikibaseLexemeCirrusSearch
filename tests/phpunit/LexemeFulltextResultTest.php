@@ -1,7 +1,6 @@
 <?php
 namespace Wikibase\Lexeme\Search\Elastic\Tests;
 
-use CirrusSearch\Search\SearchContext;
 use Elastica\Response;
 use Elastica\Result;
 use Elastica\ResultSet;
@@ -258,9 +257,6 @@ class LexemeFulltextResultTest extends MediaWikiTestCase {
 			$termLookupFactory
 		);
 
-		$context = $this->getMockBuilder( SearchContext::class )
-			->disableOriginalConstructor()->getMock();
-
 		$resultSet = $this->getMockBuilder( ResultSet::class )
 			->disableOriginalConstructor()->getMock();
 		if ( is_null( $resultData ) ) {
@@ -273,7 +269,7 @@ class LexemeFulltextResultTest extends MediaWikiTestCase {
 			->method( 'getResponse' )
 			->willReturn( new Response( '{}', 200 ) );
 
-		$converted = $res->transformElasticsearchResult( $context, $resultSet );
+		$converted = $res->transformElasticsearchResult( $resultSet );
 		if ( empty( $expected ) ) {
 			$this->assertCount( 0, $converted );
 			return;
