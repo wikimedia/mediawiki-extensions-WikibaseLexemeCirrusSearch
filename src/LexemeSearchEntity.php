@@ -18,9 +18,9 @@ use Wikibase\Lib\Interactors\TermSearchResult;
 use Wikibase\Lib\Store\LanguageFallbackLabelDescriptionLookupFactory;
 use Wikibase\Lib\Store\PrefetchingTermLookup;
 use Wikibase\Repo\Api\EntitySearchHelper;
-use Wikibase\Repo\Search\Elastic\EntitySearchElastic;
-use Wikibase\Repo\Search\Elastic\EntitySearchUtils;
-use Wikibase\Repo\Search\Elastic\WikibasePrefixSearcher;
+use Wikibase\Search\Elastic\EntitySearchElastic;
+use Wikibase\Search\Elastic\EntitySearchUtils;
+use Wikibase\Search\Elastic\WikibasePrefixSearcher;
 
 /**
  * Implementation of ElasticSearch prefix/completion search for Lexemes

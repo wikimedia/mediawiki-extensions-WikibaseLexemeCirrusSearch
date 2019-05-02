@@ -95,7 +95,7 @@ class LexemeFullTextQueryBuilderTest extends MediaWikiTestCase {
 		$encoded = json_encode( [
 				'query' => $query->toArray(),
 				'rescore_query' => $rescore,
-				'highlight' => $context->getHighlight( $context->getResultsType() )
+				'highlight' => $context->getHighlight( $context->getResultsType(), $query )
 			],
 			JSON_PRETTY_PRINT );
 		ini_set( 'serialize_precision', $serializePrecision );
