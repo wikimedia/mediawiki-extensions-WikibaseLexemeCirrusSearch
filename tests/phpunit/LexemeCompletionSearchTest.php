@@ -102,6 +102,7 @@ class LexemeCompletionSearchTest extends \MediaWikiTestCase {
 			'form', 10, false
 		);
 		$decodedQuery = json_decode( $elasticQuery, true );
+		$decodedQuery = $decodedQuery['__main__'] ?? $decodedQuery;
 		unset( $decodedQuery['path'] );
 
 		// T206100

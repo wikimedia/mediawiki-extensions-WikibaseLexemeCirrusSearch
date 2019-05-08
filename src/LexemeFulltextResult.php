@@ -2,7 +2,6 @@
 namespace Wikibase\Lexeme\Search\Elastic;
 
 use CirrusSearch\Search\ResultsType;
-use CirrusSearch\Search\SearchContext;
 use Elastica\ResultSet;
 use Language;
 use Wikibase\DataModel\Entity\EntityIdParser;
@@ -210,13 +209,10 @@ class LexemeFulltextResult implements ResultsType {
 	 * The data inside the set are not rendered yet, but the set is configured with
 	 * the label lookup that has necessary item labels already loaded.
 	 *
-	 * @param SearchContext $context
 	 * @param ResultSet $result ElasticSearch results
 	 * @return \SearchResultSet
 	 */
-	public function transformElasticsearchResult(
-		SearchContext $context, ResultSet $result
-	) {
+	public function transformElasticsearchResult( ResultSet $result ) {
 		$rawResults = $entityIds = [];
 		foreach ( $result->getResults() as $r ) {
 			$sourceData = $r->getSource();

@@ -1,7 +1,6 @@
 <?php
 namespace Wikibase\Lexeme\Search\Elastic\Tests;
 
-use CirrusSearch\Search\SearchContext;
 use Elastica\Result;
 use Elastica\ResultSet;
 use Language;
@@ -363,16 +362,13 @@ class FormTermResultTest extends \PHPUnit_Framework_TestCase {
 			2
 		);
 
-		$context = $this->getMockBuilder( SearchContext::class )
-			->disableOriginalConstructor()->getMock();
-
 		$result = new Result( $resultData );
 		$resultSet = $this->getMockBuilder( ResultSet::class )
 			->disableOriginalConstructor()->getMock();
 		$resultSet->expects( $this->once() )->method( 'getResults' )
 			->willReturn( $resultData ? [ $result ] : [] );
 
-		$converted = $res->transformElasticsearchResult( $context, $resultSet );
+		$converted = $res->transformElasticsearchResult( $resultSet );
 		if ( empty( $expected ) ) {
 			$this->assertCount( 0, $converted );
 			return;

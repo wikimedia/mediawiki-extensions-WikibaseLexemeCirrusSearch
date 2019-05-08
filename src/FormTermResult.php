@@ -2,7 +2,6 @@
 namespace Wikibase\Lexeme\Search\Elastic;
 
 use CirrusSearch\Search\ResultsType;
-use CirrusSearch\Search\SearchContext;
 use Elastica\ResultSet;
 use Language;
 use Wikibase\DataModel\Entity\EntityIdParser;
@@ -207,11 +206,10 @@ class FormTermResult implements ResultsType {
 
 	/**
 	 * Convert search result from ElasticSearch result set to TermSearchResult.
-	 * @param SearchContext $context
 	 * @param ResultSet $result
 	 * @return TermSearchResult[] Set of search results, the types of which vary by implementation.
 	 */
-	public function transformElasticsearchResult( SearchContext $context, ResultSet $result ) {
+	public function transformElasticsearchResult( ResultSet $result ) {
 		$rawResults = $entityIds = [];
 		foreach ( $result->getResults() as $r ) {
 			$sourceData = $r->getSource();
