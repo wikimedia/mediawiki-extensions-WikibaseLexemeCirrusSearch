@@ -1,7 +1,7 @@
 <?php
 namespace Wikibase\Lexeme\Search\Elastic;
 
-use CirrusSearch;
+use CirrusSearch\CirrusSearch;
 use SearchEngine;
 use Wikibase\DataModel\Entity\EntityDocument;
 use Wikibase\Lexeme\Domain\Model\Lexeme;

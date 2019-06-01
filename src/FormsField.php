@@ -1,7 +1,7 @@
 <?php
 namespace Wikibase\Lexeme\Search\Elastic;
 
-use CirrusSearch;
+use CirrusSearch\CirrusSearch;
 use CirrusSearch\Search\KeywordIndexField;
 use SearchEngine;
 use SearchIndexField;
