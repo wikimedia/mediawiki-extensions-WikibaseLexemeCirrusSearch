@@ -74,7 +74,7 @@ class LexemeResult extends Result {
 	 * @param array $terms
 	 * @return string
 	 */
-	public function getTextSnippet( $terms ) {
+	public function getTextSnippet( $terms = [] ) {
 		$attr = [ 'class' => 'wb-itemlink-description' ];
 		return Html::rawElement( 'span', $attr, HtmlArmor::getHtml( $this->descriptionData ) );
 	}

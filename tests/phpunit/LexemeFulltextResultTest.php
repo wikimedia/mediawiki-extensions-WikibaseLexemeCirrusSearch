@@ -315,7 +315,7 @@ class LexemeFulltextResultTest extends MediaWikiTestCase {
 		 * @var LexemeResult $result
 		 */
 		$this->assertEquals( $expected['title'], $result->getTitleSnippet(), "Bad title" );
-		$this->assertEquals( $expected['description'], $result->getTextSnippet( [] ),
+		$this->assertEquals( $expected['description'], $result->getTextSnippet(),
 			"Bad description" );
 	}
 
