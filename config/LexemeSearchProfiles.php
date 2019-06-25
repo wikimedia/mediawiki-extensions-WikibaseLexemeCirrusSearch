@@ -10,7 +10,7 @@ use Wikibase\Lexeme\Search\Elastic\LexemeFullTextQueryBuilder;
 return [
 // FIXME: no tuning yet
 	'lexeme_fulltext' => [
-		'builder_class' => LexemeFullTextQueryBuilder::class,
+		'builder_factory' => [ LexemeFullTextQueryBuilder::class, 'newFromGlobals' ],
 		'settings' => [
 			'any'          => 0.1,
 			'exact'        => 2,

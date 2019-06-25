@@ -2,13 +2,11 @@
 
 namespace Wikibase\Lexeme\Search\Elastic\Tests;
 
-use CirrusSearch\Profile\SearchProfileService;
-use CirrusSearch\Query\FullTextQueryStringQueryBuilder;
-use CirrusSearch\Search\SearchContext;
+use CirrusSearch\CirrusDebugOptions;
+use CirrusSearch\CirrusSearch;
+use CirrusSearch\CirrusTestCase;
 use CirrusSearch\SearchConfig;
-use Language;
 use MediaWikiTestCase;
-use Wikibase\DataModel\Entity\ItemIdParser;
 use Wikibase\Lexeme\Search\Elastic\LexemeFullTextQueryBuilder;
 
 /**
@@ -44,63 +42,30 @@ class LexemeFullTextQueryBuilderTest extends MediaWikiTestCase {
 		];
 	}
 
-	private function getConfigSettings() {
-		return [
-			'any'          => 0.1,
-			'exact'        => 2,
-			'folded'       => 1.5,
-			'partial'      => 1,
-			'form-discount' => 1,
-		];
-	}
-
 	/**
 	 * @dataProvider searchDataProvider
 	 * @param string $searchString
 	 * @param string $expected
+	 * @throws \ConfigException
 	 */
 	public function testSearchElastic( $searchString, $expected ) {
 		$this->setMwGlobals( [
-			'wgCirrusSearchQueryStringMaxDeterminizedStates' => 500,
-			'wgCirrusSearchElasticQuirks' => [],
 			'wgLexemeFulltextRescoreProfile' => 'lexeme_fulltext',
 		] );
 
 		$config = new SearchConfig();
+		$cirrus = new CirrusSearch( $config, CirrusDebugOptions::forDumpingQueriesInUnitTests() );
+		$cirrus->setNamespaces( [ 146 ] );
+		$result = json_decode( $cirrus->searchText( $searchString )->getValue(), true );
+		$this->assertStringStartsWith( LexemeFullTextQueryBuilder::LEXEME_FULL_TEXT_MARKER, $result['__main__']['description'] );
 
-		$builder = new LexemeFullTextQueryBuilder(
-			$this->getConfigSettings(),
-			$this->getTermLookupFactory( [], 'en' ),
-			new ItemIdParser(),
-			Language::factory( 'en' )
-		);
+		$actual = CirrusTestCase::encodeFixture( [
+			'query' => $result['__main__']['query']['query'],
+			'rescore_query' => $result['__main__']['query']['rescore'],
+			'highlight' => $result['__main__']['query']['highlight'],
+		] );
 
-		$builderSettings = $config->getProfileService()
-			->loadProfileByName( SearchProfileService::FT_QUERY_BUILDER, 'default' );
-		$defaultBuilder = new FullTextQueryStringQueryBuilder( $config, [],
-			$builderSettings['settings'] );
-		// 146 is Lexeme namespaces
-		$context = new SearchContext( $config, [ 146 ] );
-		$defaultBuilder->build( $context, $searchString );
-		// Dispatcher does this cleanup, so do it here
-		$context->setHighlightQuery( null );
-		// do the job
-		$builder->build( $context, $searchString );
-		$query = $context->getQuery();
-		$rescore = $context->getRescore();
-
-		// T206100
-		$serializePrecision = ini_get( 'serialize_precision' );
-		ini_set( 'serialize_precision', -1 );
-		$encoded = json_encode( [
-				'query' => $query->toArray(),
-				'rescore_query' => $rescore,
-				'highlight' => $context->getHighlight( $context->getResultsType(), $query )
-			],
-			JSON_PRETTY_PRINT );
-		ini_set( 'serialize_precision', $serializePrecision );
-
-		$this->assertFileContains( $expected, $encoded );
+		$this->assertFileContains( $expected, $actual, CirrusTestCase::canRebuildFixture() );
 	}
 
 }

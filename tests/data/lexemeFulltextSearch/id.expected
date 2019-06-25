@@ -22,7 +22,7 @@
                                         {
                                             "match": {
                                                 "all": {
-                                                    "query": " L2-F1 ",
+                                                    "query": "L2-F1",
                                                     "operator": "AND"
                                                 }
                                             }
@@ -30,7 +30,7 @@
                                         {
                                             "match": {
                                                 "all.plain": {
-                                                    "query": " L2-F1 ",
+                                                    "query": "L2-F1",
                                                     "operator": "AND"
                                                 }
                                             }
@@ -48,7 +48,7 @@
                                             "constant_score": {
                                                 "filter": {
                                                     "match": {
-                                                        "lemma.near_match": " L2-F1 "
+                                                        "lemma.near_match": "L2-F1"
                                                     }
                                                 },
                                                 "boost": 2
@@ -58,7 +58,7 @@
                                             "constant_score": {
                                                 "filter": {
                                                     "match": {
-                                                        "lemma.near_match_folded": " L2-F1 "
+                                                        "lemma.near_match_folded": "L2-F1"
                                                     }
                                                 },
                                                 "boost": 1.5
@@ -68,7 +68,7 @@
                                             "constant_score": {
                                                 "filter": {
                                                     "match": {
-                                                        "lexeme_forms.representation.near_match": " L2-F1 "
+                                                        "lexeme_forms.representation.near_match": "L2-F1"
                                                     }
                                                 },
                                                 "boost": 2
@@ -78,7 +78,7 @@
                                             "constant_score": {
                                                 "filter": {
                                                     "match": {
-                                                        "lexeme_forms.representation.near_match_folded": " L2-F1 "
+                                                        "lexeme_forms.representation.near_match_folded": "L2-F1"
                                                     }
                                                 },
                                                 "boost": 1.5
@@ -93,7 +93,7 @@
                                         {
                                             "match": {
                                                 "all": {
-                                                    "query": " L2-F1 ",
+                                                    "query": "L2-F1",
                                                     "operator": "OR",
                                                     "boost": 0.1
                                                 }
@@ -102,7 +102,7 @@
                                         {
                                             "match": {
                                                 "all.plain": {
-                                                    "query": " L2-F1 ",
+                                                    "query": "L2-F1",
                                                     "operator": "OR",
                                                     "boost": 0.1
                                                 }

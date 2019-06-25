@@ -26,6 +26,7 @@ class LexemeFullTextQueryBuilder implements FullTextQueryBuilder {
 	 * Lexeme fulltext search context name
 	 */
 	const CONTEXT_LEXEME_FULLTEXT = 'wikibase_lexeme_fulltext';
+	const LEXEME_FULL_TEXT_MARKER = 'lexeme_full_text';
 
 	/**
 	 * @var array
@@ -117,7 +118,7 @@ class LexemeFullTextQueryBuilder implements FullTextQueryBuilder {
 	 */
 	protected function buildEntitySearchQuery( SearchContext $searchContext, $term ) {
 		$searchContext->setProfileContext( self::CONTEXT_LEXEME_FULLTEXT );
-		$searchContext->addSyntaxUsed( 'lexeme_full_text', 10 );
+		$searchContext->addSyntaxUsed( self::LEXEME_FULL_TEXT_MARKER, 10 );
 		/*
 		 * Overall query structure is as follows:
 		 * - Bool with:
