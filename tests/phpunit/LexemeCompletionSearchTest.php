@@ -3,6 +3,7 @@
 namespace Wikibase\Lexeme\Search\Elastic\Tests;
 
 use CirrusSearch\CirrusDebugOptions;
+use CirrusSearch\CirrusTestCase;
 use Language;
 use Wikibase\DataModel\Entity\BasicEntityIdParser;
 use Wikibase\Lexeme\Search\Elastic\FormSearchEntity;
@@ -84,11 +85,12 @@ class LexemeCompletionSearchTest extends \MediaWikiTestCase {
 		unset( $decodedQuery['path'] );
 		// T206100
 		$this->setIniSetting( 'serialize_precision', 10 );
-		$encodedData = json_encode( $decodedQuery, JSON_PRETTY_PRINT );
+		$encodedData = CirrusTestCase::encodeFixture( $decodedQuery );
 
 		$this->assertFileContains(
 			__DIR__ . "/../data/lexemeCompletionSearch/$expected.expected",
-			$encodedData );
+			$encodedData,
+			CirrusTestCase::canRebuildFixture() );
 	}
 
 	/**
@@ -108,11 +110,12 @@ class LexemeCompletionSearchTest extends \MediaWikiTestCase {
 
 		// T206100
 		$this->setIniSetting( 'serialize_precision', 10 );
-		$encodedData = json_encode( $decodedQuery, JSON_PRETTY_PRINT );
+		$encodedData = CirrusTestCase::encodeFixture( $decodedQuery );
 
 		$this->assertFileContains(
 			__DIR__ . "/../data/lexemeCompletionSearch/$expected.form.expected",
-			$encodedData );
+			$encodedData,
+			CirrusTestCase::canRebuildFixture() );
 	}
 
 }

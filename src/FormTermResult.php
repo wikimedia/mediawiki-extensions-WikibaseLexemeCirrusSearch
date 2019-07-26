@@ -1,7 +1,7 @@
 <?php
 namespace Wikibase\Lexeme\Search\Elastic;
 
-use CirrusSearch\Search\ResultsType;
+use CirrusSearch\Search\BaseResultsType;
 use Elastica\ResultSet;
 use Language;
 use Wikibase\DataModel\Entity\EntityIdParser;
@@ -17,7 +17,7 @@ use Wikibase\Search\Elastic\EntitySearchUtils;
  * @license GPL-2.0-or-later
  * @author Stas Malyshev
  */
-class FormTermResult implements ResultsType {
+class FormTermResult extends BaseResultsType {
 
 	/**
 	 * @var EntityIdParser
@@ -33,11 +33,6 @@ class FormTermResult implements ResultsType {
 	 * @var LanguageFallbackLabelDescriptionLookupFactory
 	 */
 	private $termLookupFactory;
-	/**
-	 * Cache for Lexeme descriptions
-	 * @var string[]
-	 */
-	private $lexemeDescriptions = [];
 	/**
 	 * Limit how many results to produce
 	 * @var int
@@ -69,14 +64,12 @@ class FormTermResult implements ResultsType {
 	 * @return string[]
 	 */
 	public function getSourceFiltering() {
-		return [
-				'namespace',
-				'title',
+		return array_merge( parent::getSourceFiltering(), [
 				LemmaField::NAME,
 				LexemeLanguageField::NAME,
 				LexemeCategoryField::NAME,
 				FormsField::NAME
-		];
+		] );
 	}
 
 	/**

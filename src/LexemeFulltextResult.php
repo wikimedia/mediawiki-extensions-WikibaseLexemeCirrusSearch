@@ -1,13 +1,15 @@
 <?php
 namespace Wikibase\Lexeme\Search\Elastic;
 
-use CirrusSearch\Search\ResultsType;
+use CirrusSearch\Search\BaseCirrusSearchResultSet;
+use CirrusSearch\Search\BaseResultsType;
 use Elastica\ResultSet;
 use Language;
 use Wikibase\DataModel\Entity\EntityIdParser;
 use Wikibase\Lexeme\DataAccess\LexemeDescription;
 use Wikibase\Lib\Store\LanguageFallbackLabelDescriptionLookupFactory;
 use Wikibase\Search\Elastic\EntitySearchUtils;
+use Wikibase\Search\Elastic\Fields\StatementCountField;
 
 /**
  * This result type implements the result for searching a Lexeme for fulltext search.
@@ -15,7 +17,7 @@ use Wikibase\Search\Elastic\EntitySearchUtils;
  * @license GPL-2.0-or-later
  * @author Stas Malyshev
  */
-class LexemeFulltextResult implements ResultsType {
+class LexemeFulltextResult extends BaseResultsType {
 
 	/**
 	 * @var EntityIdParser
@@ -54,15 +56,13 @@ class LexemeFulltextResult implements ResultsType {
 	 * @return string[]
 	 */
 	public function getSourceFiltering() {
-		return [
-				'namespace',
-				'title',
+		return array_merge( parent::getSourceFiltering(), [
 				LemmaField::NAME,
 				LexemeLanguageField::NAME,
 				LexemeCategoryField::NAME,
 				FormsField::NAME,
-				'statement_count',
-		];
+				StatementCountField::NAME,
+		] );
 	}
 
 	/**
@@ -215,6 +215,7 @@ class LexemeFulltextResult implements ResultsType {
 	public function transformElasticsearchResult( ResultSet $result ) {
 		$rawResults = $entityIds = [];
 		foreach ( $result->getResults() as $r ) {
+			$rawResultKey = spl_object_hash( $r );
 			$sourceData = $r->getSource();
 			$entityId = EntitySearchUtils::parseOrNull( $sourceData['title'], $this->idParser );
 			if ( !$entityId ) {
@@ -269,6 +270,7 @@ class LexemeFulltextResult implements ResultsType {
 
 			// Doing two-stage resolution here since we want to prefetch all labels for
 			// auxiliary entities before using them to construct descriptions.
+			$lexemeData['elastica_result_hash'] = $rawResultKey;
 			$rawResults[$entityId->getSerialization()] = $lexemeData;
 			$entityIds[$lang] = EntitySearchUtils::parseOrNull( $lang, $this->idParser );
 			$entityIds[$category] = EntitySearchUtils::parseOrNull( $category, $this->idParser );
@@ -290,10 +292,10 @@ class LexemeFulltextResult implements ResultsType {
 	}
 
 	/**
-	 * @return array Empty set of search results
+	 * @return mixed Empty set of search results
 	 */
 	public function createEmptyResult() {
-		return [];
+		return BaseCirrusSearchResultSet::emptyResultSet( false );
 	}
 
 }
