@@ -3,8 +3,8 @@
 namespace Wikibase\Lexeme\Search\Elastic\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Wikibase\Lexeme\Tests\DataModel\NewForm;
-use Wikibase\Lexeme\Tests\DataModel\NewLexeme;
+use Wikibase\Lexeme\Tests\Unit\DataModel\NewForm;
+use Wikibase\Lexeme\Tests\Unit\DataModel\NewLexeme;
 use Wikibase\Repo\Search\Fields\WikibaseIndexField;
 
 /**
