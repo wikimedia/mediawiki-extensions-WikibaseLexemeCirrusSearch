@@ -4,8 +4,10 @@
 			"Piramidion",
 			"Movses",
 			"Vlad5250",
-			"Renamerr"
+			"Renamerr",
+			"Ата"
 		]
 	},
+	"wikibaselexemecirrus-desc": "Розширення WikibaseLexeme для використання функціоналу CirrusSearch",
 	"wikibaselexemecirrus-rescore-profile-prefix": "Профіль переоцінювання для пошуку через префікс (шляхом доповнення)"
 }
