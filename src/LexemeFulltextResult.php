@@ -210,7 +210,7 @@ class LexemeFulltextResult implements ResultsType {
 	 * the label lookup that has necessary item labels already loaded.
 	 *
 	 * @param ResultSet $result ElasticSearch results
-	 * @return \SearchResultSet
+	 * @return \ISearchResultSet
 	 */
 	public function transformElasticsearchResult( ResultSet $result ) {
 		$rawResults = $entityIds = [];
