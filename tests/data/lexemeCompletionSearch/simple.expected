@@ -106,6 +106,8 @@
         "_source": [
             "namespace",
             "title",
+            "namespace_text",
+            "wiki",
             "lemma",
             "lexeme_language",
             "lexical_category"
