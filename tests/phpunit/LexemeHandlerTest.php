@@ -2,7 +2,6 @@
 
 namespace Wikibase\Lexeme\Search\Elastic\Tests;
 
-use PHPUnit4And6Compat;
 use Wikibase\DataModel\Entity\EntityDocument;
 use Wikibase\DataModel\Entity\EntityId;
 use Wikibase\DataModel\Entity\ItemId;
@@ -25,8 +24,6 @@ use Wikibase\SettingsArray;
  * @author Bene* < benestar.wikimedia@gmail.com >
  */
 class LexemeHandlerTest extends EntityHandlerTestCase {
-
-	use PHPUnit4And6Compat;
 
 	/**
 	 * @return string
@@ -147,7 +144,7 @@ class LexemeHandlerTest extends EntityHandlerTestCase {
 
 	public function testDataForSearchIndex() {
 		$handler = $this->getHandler();
-		$engine = $this->getMock( \SearchEngine::class );
+		$engine = $this->createMock( \SearchEngine::class );
 
 		$page = $this->getMockWikiPage( $handler );
 

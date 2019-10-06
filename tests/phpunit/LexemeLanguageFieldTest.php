@@ -3,7 +3,6 @@
 namespace Wikibase\Lexeme\Search\Elastic\Tests;
 
 use DataValues\StringValue;
-use PHPUnit4And6Compat;
 use Wikibase\DataModel\Entity\Item;
 use Wikibase\DataModel\Entity\ItemId;
 use Wikibase\DataModel\Entity\PropertyId;
@@ -17,8 +16,6 @@ use Wikibase\Lexeme\Search\Elastic\LexemeLanguageField;
  * @covers \Wikibase\Lexeme\Search\Elastic\LexemeLanguageField
  */
 class LexemeLanguageFieldTest extends LexemeFieldTest {
-
-	use PHPUnit4And6Compat;
 
 	/**
 	 * @return StatementList
@@ -34,10 +31,10 @@ class LexemeLanguageFieldTest extends LexemeFieldTest {
 	 * @return EntityLookup
 	 */
 	private function getEntityLookup( StatementList $statList ) {
-		$langEntity = $this->getMock( Item::class );
+		$langEntity = $this->createMock( Item::class );
 		$langEntity->method( 'getStatements' )->willReturn( $statList );
 
-		$lookup = $this->getMock( EntityLookup::class );
+		$lookup = $this->createMock( EntityLookup::class );
 		$lookup->method( 'getEntity' )
 			->with( new ItemId( self::LANGUAGE_ID ) )
 			->willReturn( $langEntity );
@@ -53,14 +50,14 @@ class LexemeLanguageFieldTest extends LexemeFieldTest {
 
 		return [
 			'no property id' => [
-				new LexemeLanguageField( $this->getMock( EntityLookup::class ), null ),
+				new LexemeLanguageField( $this->createMock( EntityLookup::class ), null ),
 				[
 					'entity' => self::LANGUAGE_ID,
 					'code' => null
 				]
 			],
 			'no entity' => [
-				new LexemeLanguageField( $this->getMock( EntityLookup::class ), $propId ),
+				new LexemeLanguageField( $this->createMock( EntityLookup::class ), $propId ),
 				[
 					'entity' => self::LANGUAGE_ID,
 					'code' => null
