@@ -3,7 +3,6 @@
 namespace Wikibase\Lexeme\Search\Elastic\Tests;
 
 use PHPUnit\Framework\TestCase;
-use PHPUnit4And6Compat;
 use Wikibase\DataModel\Entity\PropertyId;
 use Wikibase\DataModel\Services\Lookup\EntityLookup;
 use Wikibase\Lexeme\Search\Elastic\LexemeFieldDefinitions;
@@ -17,12 +16,10 @@ use Wikibase\Search\Elastic\Fields\StatementProviderFieldDefinitions;
  */
 class LexemeFieldDefinitionsTest extends TestCase {
 
-	use PHPUnit4And6Compat;
-
 	public function testGetFields() {
 		$fieldDefinitions = new LexemeFieldDefinitions(
 			$this->getMockStatementProviderFieldDefinitions(),
-			$this->getMock( EntityLookup::class ),
+			$this->createMock( EntityLookup::class ),
 			new PropertyId( 'P123' )
 		);
 
@@ -32,7 +29,7 @@ class LexemeFieldDefinitionsTest extends TestCase {
 	public function testGetFieldsNoCode() {
 		$fieldDefinitions = new LexemeFieldDefinitions(
 			$this->getMockStatementProviderFieldDefinitions(),
-			$this->getMock( EntityLookup::class ),
+			$this->createMock( EntityLookup::class ),
 			null
 		);
 
