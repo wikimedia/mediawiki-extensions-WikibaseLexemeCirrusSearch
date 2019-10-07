@@ -4,6 +4,7 @@ namespace Wikibase\Lexeme\Search\Elastic\Tests;
 use Elastica\Result;
 use Elastica\ResultSet;
 use Language;
+use PHPUnit\Framework\TestCase;
 use Wikibase\Lexeme\Search\Elastic\FormTermResult;
 
 // phpcs:disable Generic.Files.LineLength.TooLong
@@ -11,7 +12,7 @@ use Wikibase\Lexeme\Search\Elastic\FormTermResult;
 /**
  * @covers \Wikibase\Lexeme\Search\Elastic\FormTermResult
  */
-class FormTermResultTest extends \PHPUnit_Framework_TestCase {
+class FormTermResultTest extends TestCase {
 	use LexemeDescriptionTest;
 
 	private $labels = [
