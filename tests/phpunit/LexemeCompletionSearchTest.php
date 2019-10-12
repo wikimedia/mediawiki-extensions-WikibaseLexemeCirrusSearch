@@ -15,7 +15,7 @@ use Wikibase\Repo\WikibaseRepo;
  */
 class LexemeCompletionSearchTest extends \MediaWikiTestCase {
 
-	public function setUp() {
+	public function setUp() : void {
 		parent::setUp();
 		if ( !class_exists( 'CirrusSearch' ) ) {
 			$this->markTestSkipped( 'CirrusSearch not installed, skipping' );
