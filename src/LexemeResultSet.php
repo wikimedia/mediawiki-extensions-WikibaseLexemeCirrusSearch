@@ -28,7 +28,7 @@ class LexemeResultSet extends BaseCirrusSearchResultSet {
 
 	/**
 	 * $rawResults indexed by hash on the originating elastica result set.
-	 * @var array
+	 * @var array[]
 	 */
 	private $rawResultsByHash = [];
 
@@ -41,7 +41,7 @@ class LexemeResultSet extends BaseCirrusSearchResultSet {
 	 * @param ElasticaResultSet $ESresult
 	 * @param Language $displayLanguage
 	 * @param LexemeDescription $descriptionMaker
-	 * @param array $lexemeResults Pre-processed data from Lexeme
+	 * @param array[] $lexemeResults Pre-processed data from Lexeme
 	 */
 	public function __construct(
 		ElasticaResultSet $ESresult,
