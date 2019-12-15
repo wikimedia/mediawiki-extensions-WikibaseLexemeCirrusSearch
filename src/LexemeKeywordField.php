@@ -43,7 +43,7 @@ abstract class LexemeKeywordField extends SearchIndexFieldDefinition implements 
 	 * @param SearchEngine $engine
 	 * @param string $name
 	 *
-	 * @return SearchIndexField
+	 * @return SearchIndexField|null
 	 */
 	public function getMappingField( SearchEngine $engine, $name ) {
 		if ( !( $engine instanceof CirrusSearch ) ) {
