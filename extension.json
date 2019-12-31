@@ -17,7 +17,9 @@
 		"MediaWiki": ">= 1.33.0"
 	},
 	"AutoloadNamespaces": {
-		"Wikibase\\Lexeme\\Search\\Elastic\\": "src/",
+		"Wikibase\\Lexeme\\Search\\Elastic\\": "src/"
+	},
+	"TestAutoloadNamespaces": {
 		"Wikibase\\Lexeme\\Search\\Elastic\\Tests\\": "tests/phpunit/"
 	},
 	"config": {
