@@ -7,8 +7,8 @@ use CirrusSearch\Profile\SearchProfileService;
 use MediaWiki\MediaWikiServices;
 use SearchResult;
 use SpecialSearch;
+use Wikibase\Lib\WikibaseSettings;
 use Wikibase\Search\Elastic\EntitySearchElastic;
-use Wikibase\WikibaseSettings;
 
 /**
  * MediaWiki hook handlers for the WikibaseLexemeCirrusSearch extension.

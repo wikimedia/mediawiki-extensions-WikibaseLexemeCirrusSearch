@@ -6,9 +6,9 @@ use Wikibase\Lexeme\Search\Elastic\FormSearchEntity;
 use Wikibase\Lexeme\Search\Elastic\LexemeFieldDefinitions;
 use Wikibase\Lexeme\Search\Elastic\LexemeFullTextQueryBuilder;
 use Wikibase\Lexeme\Search\Elastic\LexemeSearchEntity;
+use Wikibase\Lib\SettingsArray;
 use Wikibase\Repo\WikibaseRepo;
 use Wikibase\Search\Elastic\Fields\StatementProviderFieldDefinitions;
-use Wikibase\SettingsArray;
 
 return [
 	'lexeme' => [

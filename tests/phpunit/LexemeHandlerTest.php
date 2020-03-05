@@ -10,12 +10,12 @@ use Wikibase\DataModel\Term\TermList;
 use Wikibase\Lexeme\MediaWiki\Content\LexemeContent;
 use Wikibase\Lexeme\MediaWiki\Content\LexemeHandler;
 use Wikibase\Lib\EntityTypeDefinitions;
+use Wikibase\Lib\SettingsArray;
 use Wikibase\Lexeme\Domain\Model\Lexeme;
 use Wikibase\Lexeme\Domain\Model\LexemeId;
 use Wikibase\Repo\Content\EntityHandler;
 use Wikibase\Repo\Tests\Content\EntityHandlerTestCase;
 use Wikibase\Repo\WikibaseRepo;
-use Wikibase\SettingsArray;
 
 /**
  * @covers \Wikibase\Lexeme\MediaWiki\Content\LexemeHandler
