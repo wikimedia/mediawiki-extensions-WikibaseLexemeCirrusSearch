@@ -1,9 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
+			"Kly",
 			"Liuxinyu970226",
-			"Mutolisp",
-			"Kly"
+			"Mutolisp"
 		]
 	},
 	"wikibaselexemecirrus-desc": "用於使用在 CirrusSearch 功能的 WikibaseLexeme 擴充",

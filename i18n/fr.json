@@ -3,10 +3,10 @@
 		"authors": [
 			"Derugon",
 			"Gomoko",
-			"Wladek92",
-			"Yzelf",
 			"Oupsa",
-			"Tpt"
+			"Tpt",
+			"Wladek92",
+			"Yzelf"
 		]
 	},
 	"wikibaselexemecirrus-desc": "Extension WikibaseLexeme pour utiliser la fonctionnalité CirrusSearch",
