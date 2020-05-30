@@ -15,7 +15,7 @@ use Wikibase\Search\Elastic\Fields\TermIndexField;
  */
 class FormsField extends TermIndexField {
 
-	const NAME = 'lexeme_forms';
+	public const NAME = 'lexeme_forms';
 
 	public function __construct() {
 		parent::__construct( static::NAME, \SearchIndexField::INDEX_TYPE_TEXT );

@@ -11,8 +11,8 @@ use Wikibase\Repo\Search\Fields\WikibaseIndexField;
  * Lemma field test.
  */
 abstract class LexemeFieldTest extends TestCase {
-	const CATEGORY_ID = 'Q456';
-	const LANGUAGE_ID = 'Q123';
+	protected const CATEGORY_ID = 'Q456';
+	protected const LANGUAGE_ID = 'Q123';
 
 	/**
 	 * @return array

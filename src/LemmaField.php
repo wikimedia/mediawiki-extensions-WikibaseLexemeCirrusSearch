@@ -12,7 +12,7 @@ use Wikibase\Search\Elastic\Fields\TermIndexField;
  */
 class LemmaField extends TermIndexField {
 
-	const NAME = 'lemma';
+	public const NAME = 'lemma';
 
 	public function __construct() {
 		parent::__construct( static::NAME, \SearchIndexField::INDEX_TYPE_TEXT );

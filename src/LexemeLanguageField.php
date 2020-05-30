@@ -17,7 +17,7 @@ use Wikibase\Lexeme\Domain\Model\Lexeme;
  * Lexeme language field - this contains Q-id of lexeme language.
  */
 class LexemeLanguageField extends LexemeKeywordField {
-	const NAME = 'lexeme_language';
+	public const NAME = 'lexeme_language';
 
 	/**
 	 * @var EntityLookup

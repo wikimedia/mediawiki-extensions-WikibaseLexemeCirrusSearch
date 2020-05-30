@@ -21,12 +21,12 @@ class LexemeFullTextQueryBuilder implements FullTextQueryBuilder {
 	/**
 	 * Default profile name for lexemes
 	 */
-	const LEXEME_DEFAULT_PROFILE = 'lexeme_fulltext';
+	public const LEXEME_DEFAULT_PROFILE = 'lexeme_fulltext';
 	/**
 	 * Lexeme fulltext search context name
 	 */
-	const CONTEXT_LEXEME_FULLTEXT = 'wikibase_lexeme_fulltext';
-	const LEXEME_FULL_TEXT_MARKER = 'lexeme_full_text';
+	public const CONTEXT_LEXEME_FULLTEXT = 'wikibase_lexeme_fulltext';
+	public const LEXEME_FULL_TEXT_MARKER = 'lexeme_full_text';
 
 	/**
 	 * @var array

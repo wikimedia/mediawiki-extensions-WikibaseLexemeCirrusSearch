@@ -8,7 +8,7 @@ use Wikibase\Lexeme\Domain\Model\Lexeme;
  * Lexeme lexical category field - this contains Q-id of lexeme category.
  */
 class LexemeCategoryField extends LexemeKeywordField {
-	const NAME = 'lexical_category';
+	public const NAME = 'lexical_category';
 
 	/**
 	 * @param EntityDocument $entity

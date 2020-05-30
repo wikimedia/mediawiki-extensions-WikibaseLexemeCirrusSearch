@@ -29,7 +29,7 @@ use Wikibase\Search\Elastic\WikibasePrefixSearcher;
  * @author Stas Malyshev
  */
 class LexemeSearchEntity implements EntitySearchHelper {
-	const CONTEXT_LEXEME_PREFIX = 'lexeme_prefix';
+	public const CONTEXT_LEXEME_PREFIX = 'lexeme_prefix';
 
 	/**
 	 * @var EntityIdParser
