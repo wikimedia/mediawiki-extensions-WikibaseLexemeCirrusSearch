@@ -259,7 +259,7 @@ class LexemeFulltextResultTest extends MediaWikiTestCase {
 
 		$resultSet = $this->getMockBuilder( ResultSet::class )
 			->disableOriginalConstructor()->getMock();
-		if ( is_null( $resultData ) ) {
+		if ( $resultData === null ) {
 			$resultSet->expects( $this->any() )->method( 'getResults' )->willReturn( [] );
 		} else {
 			$result = new Result( $resultData );
