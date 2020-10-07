@@ -334,7 +334,8 @@ class FormTermResultTest extends TestCase {
 						'label' => [ 'en', 'duck' ],
 						'description' => [
 							'qqx',
-							'(wikibaselexeme-form-description: (wikibaselexeme-unknown-category), duck, L1, (wikibaselexeme-description: Anglais, nom))',
+							'(wikibaselexeme-form-description: (wikibaselexeme-unknown-category), '
+							 . 'duck, L1, (wikibaselexeme-description: Anglais, nom))',
 						],
 						'matched' => [ 'en', 'duck' ],
 						'matchedType' => 'label'
@@ -378,26 +379,26 @@ class FormTermResultTest extends TestCase {
 		foreach ( $converted as $idx => $item ) {
 			$this->assertArrayHasKey( $idx, $expected );
 			$expectedEntry = $expected[$idx];
-			$this->assertEquals( $expectedEntry['id'], $item->getEntityId()->getSerialization(),
+			$this->assertSame( $expectedEntry['id'], $item->getEntityId()->getSerialization(),
 				'ID is wrong' );
 
-			$this->assertEquals( $expectedEntry['label'][0],
+			$this->assertSame( $expectedEntry['label'][0],
 				$item->getDisplayLabel()->getLanguageCode(), 'Label language is wrong' );
-			$this->assertEquals( $expectedEntry['label'][1], $item->getDisplayLabel()->getText(),
+			$this->assertSame( $expectedEntry['label'][1], $item->getDisplayLabel()->getText(),
 				'Label text is wrong' );
 
-			$this->assertEquals( $expectedEntry['matched'][0],
+			$this->assertSame( $expectedEntry['matched'][0],
 				$item->getMatchedTerm()->getLanguageCode(), 'Matched language is wrong' );
-			$this->assertEquals( $expectedEntry['matched'][1], $item->getMatchedTerm()->getText(),
+			$this->assertSame( $expectedEntry['matched'][1], $item->getMatchedTerm()->getText(),
 				'Matched text is wrong' );
 
-			$this->assertEquals( $expectedEntry['matchedType'], $item->getMatchedTermType(),
+			$this->assertSame( $expectedEntry['matchedType'], $item->getMatchedTermType(),
 				'Match type is wrong' );
 
-			$this->assertEquals( $expectedEntry['description'][0],
+			$this->assertSame( $expectedEntry['description'][0],
 				$item->getDisplayDescription()->getLanguageCode(),
 				'Description language is wrong' );
-			$this->assertEquals( $expectedEntry['description'][1],
+			$this->assertSame( $expectedEntry['description'][1],
 				$item->getDisplayDescription()->getText(), 'Description text is wrong' );
 		}
 	}

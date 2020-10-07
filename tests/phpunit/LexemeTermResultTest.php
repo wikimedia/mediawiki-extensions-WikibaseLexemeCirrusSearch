@@ -250,27 +250,27 @@ class LexemeTermResultTest extends \MediaWikiTestCase {
 		$this->assertArrayHasKey( $expected['id'], $converted );
 		$converted = $converted[$expected['id']];
 
-		$this->assertEquals( $expected['id'], $converted->getEntityId()->getSerialization(),
+		$this->assertSame( $expected['id'], $converted->getEntityId()->getSerialization(),
 			'ID is wrong' );
 
-		$this->assertEquals( $expected['label'][0],
+		$this->assertSame( $expected['label'][0],
 			$converted->getDisplayLabel()->getLanguageCode(), 'Label language is wrong' );
-		$this->assertEquals( $expected['label'][1], $converted->getDisplayLabel()->getText(),
+		$this->assertSame( $expected['label'][1], $converted->getDisplayLabel()->getText(),
 			'Label text is wrong' );
 
-		$this->assertEquals( $expected['matched'][0],
+		$this->assertSame( $expected['matched'][0],
 			$converted->getMatchedTerm()->getLanguageCode(), 'Matched language is wrong' );
-		$this->assertEquals( $expected['matched'][1], $converted->getMatchedTerm()->getText(),
+		$this->assertSame( $expected['matched'][1], $converted->getMatchedTerm()->getText(),
 			'Matched text is wrong' );
 
-		$this->assertEquals( $expected['matchedType'], $converted->getMatchedTermType(),
+		$this->assertSame( $expected['matchedType'], $converted->getMatchedTermType(),
 			'Match type is wrong' );
 
 		if ( !empty( $expected['description'] ) ) {
-			$this->assertEquals( $expected['description'][0],
+			$this->assertSame( $expected['description'][0],
 				$converted->getDisplayDescription()->getLanguageCode(),
 				'Description language is wrong' );
-			$this->assertEquals( $expected['description'][1],
+			$this->assertSame( $expected['description'][1],
 				$converted->getDisplayDescription()->getText(), 'Description text is wrong' );
 		} else {
 			$this->assertNull( $converted->getDisplayDescription() );

@@ -286,23 +286,23 @@ class LexemeFulltextResultTest extends MediaWikiTestCase {
 
 		$rawResult = reset( $rawResults );
 		// Check raw data
-		$this->assertEquals( $expected['id'], $rawResult['lexemeId']->getSerialization(),
+		$this->assertSame( $expected['id'], $rawResult['lexemeId']->getSerialization(),
 			'Bad lexeme ID' );
-		$this->assertEquals( $expected['lemma'], $rawResult['lemma'],
+		$this->assertSame( $expected['lemma'], $rawResult['lemma'],
 			'Bad lemma match' );
-		$this->assertEquals( $expected['lang'], $rawResult['lang'],
+		$this->assertSame( $expected['lang'], $rawResult['lang'],
 			'Bad language match' );
-		$this->assertEquals( $expected['langcode'], $rawResult['langcode'],
+		$this->assertSame( $expected['langcode'], $rawResult['langcode'],
 			'Bad langcode match' );
-		$this->assertEquals( $expected['category'], $rawResult['category'],
+		$this->assertSame( $expected['category'], $rawResult['category'],
 			'Bad category match' );
 
 		if ( isset( $expected['formId'] ) ) {
-			$this->assertEquals( $expected['formId'], $rawResult['formId'],
+			$this->assertSame( $expected['formId'], $rawResult['formId'],
 				'Bad form ID match' );
-			$this->assertEquals( $expected['representation'], $rawResult['representation'],
+			$this->assertSame( $expected['representation'], $rawResult['representation'],
 				'Bad representation match' );
-			$this->assertEquals( $expected['features'], $rawResult['features'],
+			$this->assertSame( $expected['features'], $rawResult['features'],
 				'Bad features match' );
 		}
 
@@ -314,8 +314,8 @@ class LexemeFulltextResultTest extends MediaWikiTestCase {
 		/**
 		 * @var LexemeResult $result
 		 */
-		$this->assertEquals( $expected['title'], $result->getTitleSnippet(), "Bad title" );
-		$this->assertEquals( $expected['description'], $result->getTextSnippet(),
+		$this->assertSame( $expected['title'], $result->getTitleSnippet(), "Bad title" );
+		$this->assertSame( $expected['description'], $result->getTextSnippet(),
 			"Bad description" );
 	}
 

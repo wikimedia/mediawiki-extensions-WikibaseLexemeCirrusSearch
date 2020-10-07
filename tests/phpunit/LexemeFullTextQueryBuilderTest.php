@@ -14,6 +14,7 @@ use Wikibase\Lexeme\Search\Elastic\LexemeFullTextQueryBuilder;
  */
 class LexemeFullTextQueryBuilderTest extends MediaWikiTestCase {
 	use LexemeDescriptionTest;
+
 	/**
 	 * @var array search settings for the test
 	 */

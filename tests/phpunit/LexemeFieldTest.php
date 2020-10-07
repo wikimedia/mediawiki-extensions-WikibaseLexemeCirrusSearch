@@ -45,7 +45,7 @@ abstract class LexemeFieldTest extends TestCase {
 			->build();
 
 		$data = $field->getFieldData( $lexeme );
-		$this->assertEquals( $expected, $data );
+		$this->assertSame( $expected, $data );
 	}
 
 }
