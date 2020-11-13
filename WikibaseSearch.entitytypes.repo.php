@@ -19,7 +19,8 @@ return [
 	'lexeme' => [
 		Def::SEARCH_FIELD_DEFINITIONS => function ( array $languageCodes, SettingsArray $searchSettings ) {
 			$repo = WikibaseRepo::getDefaultInstance();
-			$config = MediaWikiServices::getInstance()->getMainConfig();
+			$services = MediaWikiServices::getInstance();
+			$config = $services->getMainConfig();
 			if ( $config->has( 'LexemeLanguageCodePropertyId' ) ) {
 				$lcID = $config->get( 'LexemeLanguageCodePropertyId' );
 			} else {
@@ -28,7 +29,8 @@ return [
 			return new LexemeFieldDefinitions(
 				StatementProviderFieldDefinitions::newFromSettings(
 					new InProcessCachingDataTypeLookup( $repo->getPropertyDataTypeLookup() ),
-					$repo->getDataTypeDefinitions()->getSearchIndexDataFormatterCallbacks(),
+					WikibaseRepo::getDataTypeDefinitions( $services )
+						->getSearchIndexDataFormatterCallbacks(),
 					$searchSettings
 				),
 				$repo->getEntityLookup(),
