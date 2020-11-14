@@ -11,7 +11,6 @@ use Wikibase\Lexeme\Domain\Model\Lexeme;
 use Wikibase\Lexeme\Domain\Model\LexemeId;
 use Wikibase\Lexeme\MediaWiki\Content\LexemeContent;
 use Wikibase\Lexeme\MediaWiki\Content\LexemeHandler;
-use Wikibase\Lib\EntityTypeDefinitions;
 use Wikibase\Lib\SettingsArray;
 use Wikibase\Repo\Content\EntityHandler;
 use Wikibase\Repo\Tests\Content\EntityHandlerTestCase;
@@ -121,15 +120,14 @@ class LexemeHandlerTest extends EntityHandlerTestCase {
 		return $this->newEntityContent();
 	}
 
-	protected function getEntityTypeDefinitions() {
-		return new EntityTypeDefinitions(
-			wfArrayPlus2d(
-				require __DIR__ . '/../../WikibaseSearch.entitytypes.repo.php',
-				array_merge_recursive(
-					require __DIR__ . '/../../../WikibaseLexeme/WikibaseLexeme.entitytypes.php',
-					require __DIR__ . '/../../../WikibaseLexeme/WikibaseLexeme.entitytypes.repo.php'
-				)
-			)
+	protected function getEntityTypeDefinitionsConfiguration(): array {
+		return wfArrayPlus2d(
+			require __DIR__ . '/../../WikibaseSearch.entitytypes.repo.php',
+			array_merge_recursive(
+				require __DIR__ . '/../../../WikibaseLexeme/WikibaseLexeme.entitytypes.php',
+				require __DIR__ . '/../../../WikibaseLexeme/WikibaseLexeme.entitytypes.repo.php'
+			),
+			parent::getEntityTypeDefinitionsConfiguration()
 		);
 	}
 
