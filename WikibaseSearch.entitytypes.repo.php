@@ -34,16 +34,20 @@ return [
 					$searchSettings
 				),
 				$repo->getEntityLookup(),
-				$lcID ? $repo->getEntityIdParser()->parse( $lcID ) : null
+				$lcID
+					? WikibaseRepo::getEntityIdParser( $services )->parse( $lcID )
+					: null
 			);
 		},
 		Def::ENTITY_SEARCH_CALLBACK => function ( WebRequest $request ) {
 			$repo = WikibaseRepo::getDefaultInstance();
+			$entityIdParser = WikibaseRepo::getEntityIdParser();
+
 			return new CombinedEntitySearchHelper(
 				[
 					new EntityIdSearchHelper(
 						$repo->getEntityLookup(),
-						$repo->getEntityIdParser(),
+						$entityIdParser,
 						new LanguageFallbackLabelDescriptionLookup(
 							$repo->getTermLookup(),
 							$repo->getLanguageFallbackChainFactory()->newFromLanguage( $repo->getUserLanguage() )
@@ -51,7 +55,7 @@ return [
 						$repo->getEntityTypeToRepositoryMapping()
 					),
 					new LexemeSearchEntity(
-						$repo->getEntityIdParser(),
+						$entityIdParser,
 						$request,
 						$repo->getUserLanguage(),
 						$repo->getLanguageFallbackChainFactory(),
@@ -65,16 +69,18 @@ return [
 	'form' => [
 		Def::ENTITY_SEARCH_CALLBACK => function ( WebRequest $request ) {
 			$repo = WikibaseRepo::getDefaultInstance();
+			$entityIdParser = WikibaseRepo::getEntityIdParser();
+
 			return new CombinedEntitySearchHelper(
 				[
 					new Wikibase\Repo\Api\EntityIdSearchHelper(
 						$repo->getEntityLookup(),
-						$repo->getEntityIdParser(),
+						$entityIdParser,
 						new NullLabelDescriptionLookup(),
 						$repo->getEntityTypeToRepositoryMapping()
 					),
 					new FormSearchEntity(
-						$repo->getEntityIdParser(),
+						$entityIdParser,
 						$request,
 						$repo->getUserLanguage(),
 						$repo->getLanguageFallbackChainFactory(),
