@@ -121,11 +121,13 @@ class LexemeHandlerTest extends EntityHandlerTestCase {
 	}
 
 	protected function getEntityTypeDefinitionsConfiguration(): array {
-		return wfArrayPlus2d(
-			require __DIR__ . '/../../WikibaseSearch.entitytypes.repo.php',
-			array_merge_recursive(
-				require __DIR__ . '/../../../WikibaseLexeme/WikibaseLexeme.entitytypes.php',
-				require __DIR__ . '/../../../WikibaseLexeme/WikibaseLexeme.entitytypes.repo.php'
+		return array_merge(
+			wfArrayPlus2d(
+				require __DIR__ . '/../../WikibaseSearch.entitytypes.repo.php',
+				array_merge_recursive(
+					require __DIR__ . '/../../../WikibaseLexeme/WikibaseLexeme.entitytypes.php',
+					require __DIR__ . '/../../../WikibaseLexeme/WikibaseLexeme.entitytypes.repo.php'
+				)
 			),
 			parent::getEntityTypeDefinitionsConfiguration()
 		);
