@@ -40,7 +40,7 @@
 
 	<rule ref="Generic.Files.LineLength">
 		<properties>
-			<!-- The inherited "lineLimit" from the base MediaWiki rule set is 100. -->
+			<!-- The inherited "lineLimit" from the base MediaWiki rule set is 120. -->
 			<property name="absoluteLineLimit" value="140" />
 		</properties>
 	</rule>
@@ -64,14 +64,6 @@
 
 	<!-- NOTE: Do not add the Squiz.Strings.DoubleQuoteUsage sniff. Even if we encourage to prefer
 		single quotes, we don't think double quotes should block patches from being merged. -->
-
-	<!-- Enforces one empty line before and after each method in a class. -->
-	<rule ref="Squiz.WhiteSpace.FunctionSpacing">
-		<properties>
-			<!-- The sniffs default is two empty lines. -->
-			<property name="spacing" value="1" />
-		</properties>
-	</rule>
 
 	<arg name="extensions" value="php" />
 	<arg name="encoding" value="UTF-8" />
