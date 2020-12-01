@@ -58,7 +58,9 @@ class LexemeFullTextQueryBuilderTest extends MediaWikiTestCase {
 		$cirrus = new CirrusSearch( $config, CirrusDebugOptions::forDumpingQueriesInUnitTests() );
 		$cirrus->setNamespaces( [ 146 ] );
 		$result = json_decode( $cirrus->searchText( $searchString )->getValue(), true );
-		$this->assertStringStartsWith( LexemeFullTextQueryBuilder::LEXEME_FULL_TEXT_MARKER, $result['__main__']['description'] );
+		$this->assertStringStartsWith(
+			LexemeFullTextQueryBuilder::LEXEME_FULL_TEXT_MARKER, $result['__main__']['description']
+		);
 
 		$actual = CirrusTestCase::encodeFixture( [
 			'query' => $result['__main__']['query']['query'],

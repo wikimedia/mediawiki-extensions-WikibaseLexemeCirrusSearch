@@ -1,37 +1,80 @@
 <?xml version="1.0"?>
 <ruleset>
-	<rule ref="./vendor/wikibase/wikibase-codesniffer/Wikibase" />
+	<!-- This rule set includes all rules from the MediaWiki rule set, see
+		https://github.com/wikimedia/mediawiki-tools-codesniffer/blob/master/MediaWiki/ruleset.xml
+		-->
+	<rule ref="./vendor/mediawiki/mediawiki-codesniffer/MediaWiki">
+
+		<!-- The function comment sniff is way to rigorous about way to many details that need
+			exceptions:
+			* It complains about missing documentation on fully self-explanatory function headers
+			  with strict type hints.
+			* It complains about missing documentation if there is a proper @see tag.
+			* It complains about duplicate spaces in "@param <type>  $<var>", but removing these
+			  doesn't make the code easier to read.
+			* It does not understand "@param <type> [$optional,…]. -->
+		<exclude name="MediaWiki.Commenting.FunctionComment" />
+
+		<!-- We disagree with the idea of certain characters making comments "illegal" and blocking
+			patches from being merged. This behaves especially bad on code examples. -->
+		<exclude name="MediaWiki.Commenting.IllegalSingleLineComment" />
+
+		<!-- Starting a function's body with an empty line can be helpful after a very large header.
+			The code is not guaranteed to be easier to read if this is disallowed. -->
+		<exclude name="MediaWiki.WhiteSpace.DisallowEmptyLineFunctions" />
+
+		<!-- Even if we encourage to use a space in "function ()", we don't think this sniff should
+			block patches from being merged. -->
+		<exclude name="MediaWiki.WhiteSpace.SpaceAfterClosure" />
+
+		<!-- Even if we encourage to use spaces in comments, we don't think this sniff should block
+			patches from being merged. -->
+		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment" />
+	</rule>
+
+	<!-- NOTE: We purposely decided against additional Generic.CodeAnalysis.… sniffs, because they
+		all have possible exceptions, and are not meant to block patches from being merged. -->
+
+	<!-- Disallows any content outside of <?php … ?> tags. -->
+	<rule ref="Generic.Files.InlineHTML" />
 
 	<rule ref="Generic.Files.LineLength">
 		<properties>
-			<property name="lineLimit" value="140" />
+			<!-- The inherited "lineLimit" from the base MediaWiki rule set is 100. -->
+			<property name="absoluteLineLimit" value="140" />
 		</properties>
 	</rule>
 
-	<rule ref="MediaWiki.Commenting.PhpunitAnnotations.NotClassTrait">
-		<exclude-pattern>DispatchingQueryBuilderTest\.php</exclude-pattern>
-	</rule>
-	<rule ref="MediaWiki.Commenting.MissingCovers">
-		<!-- FIXME: Add missing @covers -->
-		<exclude-pattern>tests/phpunit/*</exclude-pattern>
-	</rule>
-	<rule ref="Wikibase.Namespaces.FullQualifiedClassName">
-		<!-- FIXME: Add use statements, some class name conflicts -->
-		<exclude-pattern>DescriptionsField\.php</exclude-pattern>
-		<exclude-pattern>ElasticTermResult\.php</exclude-pattern>
-		<exclude-pattern>EntityResultSet\.php</exclude-pattern>
-		<exclude-pattern>EntityResultType\.php</exclude-pattern>
-		<exclude-pattern>EntitySearchElasticTest\.php</exclude-pattern>
-		<exclude-pattern>EntitySearchProfiles\.php</exclude-pattern>
-		<exclude-pattern>LabelsField\.php</exclude-pattern>
-		<exclude-pattern>SearchEntitiesIntegrationTest\.php</exclude-pattern>
-		<exclude-pattern>TermLookupSearcher\.php</exclude-pattern>
-		<exclude-pattern>WikibasePrefixSearcher\.php</exclude-pattern>
-		<exclude-pattern>WikibaseSearch\.entitytypes\.php</exclude-pattern>
+	<!-- NOTE: Never add the Generic.Metrics.… sniffs to this generic rule set, because these are
+		not about "code style", and the exact limits are highly disputable. -->
+
+	<rule ref="MediaWiki.NamingConventions.LowerCamelFunctionsName">
+		<!-- Exclude test methods like "testGivenInvalidInput_methodThrowsException". -->
+		<exclude-pattern>tests*Test*\.php</exclude-pattern>
 	</rule>
 
-	<rule ref="Generic.Metrics.NestingLevel" />
+	<!-- NOTE: We can not use the Squiz.Arrays.ArrayBracketSpacing sniff because it conflicts with
+		the MediaWiki style that encourages to use spaces inside brackets, see
+		https://www.mediawiki.org/wiki/Manual:Coding_conventions/JavaScript#Whitespace -->
+
+	<!-- Makes sure control structures like if ( … ), for ( …; …; … ) etc. properly use spaces. -->
+	<rule ref="Squiz.ControlStructures.ControlSignature" />
+
+	<rule ref="Squiz.Functions.GlobalFunction" />
+
+	<!-- NOTE: Do not add the Squiz.Strings.DoubleQuoteUsage sniff. Even if we encourage to prefer
+		single quotes, we don't think double quotes should block patches from being merged. -->
+
+	<!-- Enforces one empty line before and after each method in a class. -->
+	<rule ref="Squiz.WhiteSpace.FunctionSpacing">
+		<properties>
+			<!-- The sniffs default is two empty lines. -->
+			<property name="spacing" value="1" />
+		</properties>
+	</rule>
+
+	<arg name="extensions" value="php" />
+	<arg name="encoding" value="UTF-8" />
 
 	<file>.</file>
-	<exclude-pattern>vendor/</exclude-pattern>
 </ruleset>
