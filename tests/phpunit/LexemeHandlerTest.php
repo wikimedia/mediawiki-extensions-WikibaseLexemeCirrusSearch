@@ -2,8 +2,10 @@
 
 namespace Wikibase\Lexeme\Search\Elastic\Tests;
 
+use Title;
 use Wikibase\DataModel\Entity\EntityDocument;
 use Wikibase\DataModel\Entity\EntityId;
+use Wikibase\DataModel\Entity\EntityRedirect;
 use Wikibase\DataModel\Entity\ItemId;
 use Wikibase\DataModel\Term\Term;
 use Wikibase\DataModel\Term\TermList;
@@ -12,7 +14,9 @@ use Wikibase\Lexeme\Domain\Model\LexemeId;
 use Wikibase\Lexeme\MediaWiki\Content\LexemeContent;
 use Wikibase\Lexeme\MediaWiki\Content\LexemeHandler;
 use Wikibase\Lib\SettingsArray;
+use Wikibase\Repo\Content\EntityContent;
 use Wikibase\Repo\Content\EntityHandler;
+use Wikibase\Repo\Content\EntityInstanceHolder;
 use Wikibase\Repo\Tests\Content\EntityHandlerTestCase;
 use Wikibase\Repo\WikibaseRepo;
 
@@ -57,6 +61,25 @@ class LexemeHandlerTest extends EntityHandlerTestCase {
 			$wikibaseRepo->getLanguageFallbackLabelDescriptionLookupFactory(),
 			$wikibaseRepo->getFieldDefinitionsByType( Lexeme::ENTITY_TYPE )
 		);
+	}
+
+	protected function newEntityContent( EntityDocument $entity = null ): EntityContent {
+		if ( $entity === null ) {
+			$entity = $this->newEntity();
+		}
+
+		return new LexemeContent( new EntityInstanceHolder( $entity ) );
+	}
+
+	protected function newRedirectContent( EntityId $id, EntityId $target ): ?EntityContent {
+		$redirect = new EntityRedirect( $id, $target );
+
+		$title = Title::makeTitle( 100, $target->getSerialization() );
+		// set content model to avoid db call to look up content model when
+		// constructing ItemContent in the tests, especially in the data providers.
+		$title->setContentModel( LexemeContent::CONTENT_MODEL_ID );
+
+		return new LexemeContent( null, $redirect, $title );
 	}
 
 	/**
