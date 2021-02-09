@@ -4,5 +4,6 @@
 			"Sabelöga"
 		]
 	},
-	"wikibaselexemecirrus-desc": "WikibaseLexeme-tillägg för att använda CirrusSearch-funktionalitet"
+	"wikibaselexemecirrus-desc": "WikibaseLexeme-tillägg för att använda CirrusSearch-funktionalitet",
+	"wikibaselexemecirrus-rescore-profile-prefix": "Rescore-profil för prefix-(kompletterings-)sökning"
 }
