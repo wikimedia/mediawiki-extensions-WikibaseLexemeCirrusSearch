@@ -56,7 +56,7 @@ class LexemeHandlerTest extends EntityHandlerTestCase {
 			$wikibaseRepo->getEntityConstraintProvider(),
 			$wikibaseRepo->getValidatorErrorLocalizer(),
 			WikibaseRepo::getEntityIdParser(),
-			$wikibaseRepo->getEntityIdLookup(),
+			WikibaseRepo::getEntityIdLookup(),
 			$wikibaseRepo->getEntityLookup(),
 			$wikibaseRepo->getLanguageFallbackLabelDescriptionLookupFactory(),
 			$wikibaseRepo->getFieldDefinitionsByType( Lexeme::ENTITY_TYPE )
