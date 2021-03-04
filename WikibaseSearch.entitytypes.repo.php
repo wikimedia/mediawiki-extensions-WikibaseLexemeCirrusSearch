@@ -42,6 +42,7 @@ return [
 		Def::ENTITY_SEARCH_CALLBACK => function ( WebRequest $request ) {
 			$repo = WikibaseRepo::getDefaultInstance();
 			$entityIdParser = WikibaseRepo::getEntityIdParser();
+			$languageFallbackChainFactory = WikibaseRepo::getLanguageFallbackChainFactory();
 
 			return new CombinedEntitySearchHelper(
 				[
@@ -50,7 +51,7 @@ return [
 						$entityIdParser,
 						new LanguageFallbackLabelDescriptionLookup(
 							$repo->getTermLookup(),
-							$repo->getLanguageFallbackChainFactory()->newFromLanguage( $repo->getUserLanguage() )
+							$languageFallbackChainFactory->newFromLanguage( $repo->getUserLanguage() )
 						),
 						$repo->getEntityTypeToRepositoryMapping()
 					),
@@ -58,7 +59,7 @@ return [
 						$entityIdParser,
 						$request,
 						$repo->getUserLanguage(),
-						$repo->getLanguageFallbackChainFactory(),
+						$languageFallbackChainFactory,
 						$repo->getPrefetchingTermLookup()
 					)
 				]
@@ -83,7 +84,7 @@ return [
 						$entityIdParser,
 						$request,
 						$repo->getUserLanguage(),
-						$repo->getLanguageFallbackChainFactory(),
+						WikibaseRepo::getLanguageFallbackChainFactory(),
 						$repo->getPrefetchingTermLookup()
 					),
 				]

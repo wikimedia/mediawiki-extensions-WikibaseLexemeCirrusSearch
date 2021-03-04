@@ -33,7 +33,7 @@ class LexemeCompletionSearchTest extends \MediaWikiTestCase {
 			new BasicEntityIdParser(),
 			new \FauxRequest(),
 			$userLang,
-			$repo->getLanguageFallbackChainFactory(),
+			WikibaseRepo::getLanguageFallbackChainFactory(),
 			$repo->getPrefetchingTermLookup(),
 			CirrusDebugOptions::forDumpingQueriesInUnitTests()
 		);

@@ -74,7 +74,7 @@ class LexemeFullTextQueryBuilder implements FullTextQueryBuilder {
 		return new static(
 			$settings,
 			new LanguageFallbackLabelDescriptionLookupFactory(
-				$repo->getLanguageFallbackChainFactory(),
+				WikibaseRepo::getLanguageFallbackChainFactory(),
 				$repo->getPrefetchingTermLookup(),
 				$repo->getPrefetchingTermLookup() ),
 			WikibaseRepo::getEntityIdParser(),
