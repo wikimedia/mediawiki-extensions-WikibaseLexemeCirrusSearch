@@ -28,13 +28,12 @@ class LexemeCompletionSearchTest extends \MediaWikiTestCase {
 	 * @return LexemeSearchEntity
 	 */
 	private function newEntitySearch( Language $userLang ) {
-		$repo = WikibaseRepo::getDefaultInstance();
 		return new LexemeSearchEntity(
 			new BasicEntityIdParser(),
 			new \FauxRequest(),
 			$userLang,
 			WikibaseRepo::getLanguageFallbackChainFactory(),
-			$repo->getPrefetchingTermLookup(),
+			WikibaseRepo::getPrefetchingTermLookup(),
 			CirrusDebugOptions::forDumpingQueriesInUnitTests()
 		);
 	}
@@ -50,7 +49,7 @@ class LexemeCompletionSearchTest extends \MediaWikiTestCase {
 			new \FauxRequest(),
 			$userLang,
 			$repo->getLanguageFallbackChainFactory(),
-			$repo->getPrefetchingTermLookup(),
+			WikibaseRepo::getPrefetchingTermLookup(),
 			CirrusDebugOptions::forDumpingQueriesInUnitTests()
 		);
 	}

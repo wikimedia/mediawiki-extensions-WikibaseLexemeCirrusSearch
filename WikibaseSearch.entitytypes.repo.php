@@ -60,7 +60,7 @@ return [
 						$request,
 						$repo->getUserLanguage(),
 						$languageFallbackChainFactory,
-						$repo->getPrefetchingTermLookup()
+						WikibaseRepo::getPrefetchingTermLookup()
 					)
 				]
 			);
@@ -85,7 +85,7 @@ return [
 						$request,
 						$repo->getUserLanguage(),
 						WikibaseRepo::getLanguageFallbackChainFactory(),
-						$repo->getPrefetchingTermLookup()
+						WikibaseRepo::getPrefetchingTermLookup()
 					),
 				]
 			);
