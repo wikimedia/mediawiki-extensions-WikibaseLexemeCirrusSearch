@@ -53,7 +53,7 @@ class LexemeHandlerTest extends EntityHandlerTestCase {
 		$globalRepo = WikibaseRepo::getDefaultInstance();
 		return new LexemeHandler(
 			$globalRepo->getEntityContentDataCodec(),
-			$wikibaseRepo->getEntityConstraintProvider(),
+			WikibaseRepo::getEntityConstraintProvider(),
 			$wikibaseRepo->getValidatorErrorLocalizer(),
 			WikibaseRepo::getEntityIdParser(),
 			WikibaseRepo::getEntityIdLookup(),
