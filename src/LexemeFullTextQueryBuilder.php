@@ -78,7 +78,7 @@ class LexemeFullTextQueryBuilder implements FullTextQueryBuilder {
 				$repo->getTermLookup(),
 				$repo->getTermBuffer() ),
 			WikibaseRepo::getEntityIdParser(),
-			$repo->getUserLanguage()
+			WikibaseRepo::getUserLanguage()
 		);
 	}
 

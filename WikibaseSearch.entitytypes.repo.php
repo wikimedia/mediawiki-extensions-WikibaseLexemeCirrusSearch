@@ -51,14 +51,14 @@ return [
 						$entityIdParser,
 						new LanguageFallbackLabelDescriptionLookup(
 							WikibaseRepo::getTermLookup(),
-							$languageFallbackChainFactory->newFromLanguage( $repo->getUserLanguage() )
+							$languageFallbackChainFactory->newFromLanguage( WikibaseRepo::getUserLanguage() )
 						),
 						$repo->getEntityTypeToRepositoryMapping()
 					),
 					new LexemeSearchEntity(
 						$entityIdParser,
 						$request,
-						$repo->getUserLanguage(),
+						WikibaseRepo::getUserLanguage(),
 						$languageFallbackChainFactory,
 						WikibaseRepo::getPrefetchingTermLookup()
 					)
@@ -83,7 +83,7 @@ return [
 					new FormSearchEntity(
 						$entityIdParser,
 						$request,
-						$repo->getUserLanguage(),
+						WikibaseRepo::getUserLanguage(),
 						WikibaseRepo::getLanguageFallbackChainFactory(),
 						WikibaseRepo::getPrefetchingTermLookup()
 					),
