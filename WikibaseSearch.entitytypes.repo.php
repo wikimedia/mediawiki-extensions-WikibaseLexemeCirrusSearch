@@ -33,7 +33,7 @@ return [
 						->getSearchIndexDataFormatterCallbacks(),
 					$searchSettings
 				),
-				$repo->getEntityLookup(),
+				WikibaseRepo::getEntityLookup( $services ),
 				$lcID
 					? WikibaseRepo::getEntityIdParser( $services )->parse( $lcID )
 					: null
@@ -47,7 +47,7 @@ return [
 			return new CombinedEntitySearchHelper(
 				[
 					new EntityIdSearchHelper(
-						$repo->getEntityLookup(),
+						WikibaseRepo::getEntityLookup(),
 						$entityIdParser,
 						new LanguageFallbackLabelDescriptionLookup(
 							WikibaseRepo::getTermLookup(),
@@ -75,7 +75,7 @@ return [
 			return new CombinedEntitySearchHelper(
 				[
 					new Wikibase\Repo\Api\EntityIdSearchHelper(
-						$repo->getEntityLookup(),
+						WikibaseRepo::getEntityLookup(),
 						$entityIdParser,
 						new NullLabelDescriptionLookup(),
 						$repo->getEntityTypeToRepositoryMapping()
