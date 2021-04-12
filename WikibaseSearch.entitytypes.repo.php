@@ -18,7 +18,6 @@ use Wikibase\Search\Elastic\Fields\StatementProviderFieldDefinitions;
 return [
 	'lexeme' => [
 		Def::SEARCH_FIELD_DEFINITIONS => function ( array $languageCodes, SettingsArray $searchSettings ) {
-			$repo = WikibaseRepo::getDefaultInstance();
 			$services = MediaWikiServices::getInstance();
 			$config = $services->getMainConfig();
 			if ( $config->has( 'LexemeLanguageCodePropertyId' ) ) {
@@ -28,7 +27,8 @@ return [
 			}
 			return new LexemeFieldDefinitions(
 				StatementProviderFieldDefinitions::newFromSettings(
-					new InProcessCachingDataTypeLookup( $repo->getPropertyDataTypeLookup() ),
+					new InProcessCachingDataTypeLookup(
+						WikibaseRepo::getPropertyDataTypeLookup( $services ) ),
 					WikibaseRepo::getDataTypeDefinitions( $services )
 						->getSearchIndexDataFormatterCallbacks(),
 					$searchSettings
