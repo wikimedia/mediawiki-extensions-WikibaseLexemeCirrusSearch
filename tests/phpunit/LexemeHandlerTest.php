@@ -58,7 +58,8 @@ class LexemeHandlerTest extends EntityHandlerTestCase {
 			WikibaseRepo::getEntityIdLookup(),
 			WikibaseRepo::getEntityLookup(),
 			WikibaseRepo::getLanguageFallbackLabelDescriptionLookupFactory(),
-			$wikibaseRepo->getFieldDefinitionsByType( Lexeme::ENTITY_TYPE )
+			WikibaseRepo::getFieldDefinitionsFactory()
+				->getFieldDefinitionsByType( Lexeme::ENTITY_TYPE )
 		);
 	}
 
