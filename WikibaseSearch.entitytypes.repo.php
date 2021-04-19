@@ -40,7 +40,6 @@ return [
 			);
 		},
 		Def::ENTITY_SEARCH_CALLBACK => function ( WebRequest $request ) {
-			$repo = WikibaseRepo::getDefaultInstance();
 			$entityIdParser = WikibaseRepo::getEntityIdParser();
 			$languageFallbackChainFactory = WikibaseRepo::getLanguageFallbackChainFactory();
 
@@ -53,7 +52,7 @@ return [
 							WikibaseRepo::getTermLookup(),
 							$languageFallbackChainFactory->newFromLanguage( WikibaseRepo::getUserLanguage() )
 						),
-						$repo->getEntityTypeToRepositoryMapping()
+						WikibaseRepo::getEntityTypeToRepositoryMapping()
 					),
 					new LexemeSearchEntity(
 						$entityIdParser,
@@ -69,7 +68,6 @@ return [
 	],
 	'form' => [
 		Def::ENTITY_SEARCH_CALLBACK => function ( WebRequest $request ) {
-			$repo = WikibaseRepo::getDefaultInstance();
 			$entityIdParser = WikibaseRepo::getEntityIdParser();
 
 			return new CombinedEntitySearchHelper(
@@ -78,7 +76,7 @@ return [
 						WikibaseRepo::getEntityLookup(),
 						$entityIdParser,
 						new NullLabelDescriptionLookup(),
-						$repo->getEntityTypeToRepositoryMapping()
+						WikibaseRepo::getEntityTypeToRepositoryMapping()
 					),
 					new FormSearchEntity(
 						$entityIdParser,
