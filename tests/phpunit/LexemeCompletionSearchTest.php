@@ -43,12 +43,11 @@ class LexemeCompletionSearchTest extends \MediaWikiTestCase {
 	 * @return LexemeSearchEntity
 	 */
 	private function newFormSearch( Language $userLang ) {
-		$repo = WikibaseRepo::getDefaultInstance();
 		return new FormSearchEntity(
 			new BasicEntityIdParser(),
 			new \FauxRequest(),
 			$userLang,
-			$repo->getLanguageFallbackChainFactory(),
+			WikibaseRepo::getLanguageFallbackChainFactory(),
 			WikibaseRepo::getPrefetchingTermLookup(),
 			CirrusDebugOptions::forDumpingQueriesInUnitTests()
 		);

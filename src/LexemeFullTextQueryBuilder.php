@@ -70,13 +70,12 @@ class LexemeFullTextQueryBuilder implements FullTextQueryBuilder {
 	 * @throws \MWException
 	 */
 	public static function newFromGlobals( array $settings ) {
-		$repo = WikibaseRepo::getDefaultInstance();
 		return new static(
 			$settings,
 			new LanguageFallbackLabelDescriptionLookupFactory(
 				WikibaseRepo::getLanguageFallbackChainFactory(),
-				$repo->getTermLookup(),
-				$repo->getTermBuffer() ),
+				WikibaseRepo::getTermLookup(),
+				WikibaseRepo::getTermBuffer() ),
 			WikibaseRepo::getEntityIdParser(),
 			WikibaseRepo::getUserLanguage()
 		);
