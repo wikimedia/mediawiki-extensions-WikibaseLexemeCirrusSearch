@@ -49,7 +49,6 @@ class LexemeHandlerTest extends EntityHandlerTestCase {
 	 * @return EntityHandler
 	 */
 	protected function getHandler( SettingsArray $settings = null ) {
-		$wikibaseRepo = $this->getWikibaseRepo( $settings );
 		return new LexemeHandler(
 			WikibaseRepo::getEntityContentDataCodec(),
 			WikibaseRepo::getEntityConstraintProvider(),
