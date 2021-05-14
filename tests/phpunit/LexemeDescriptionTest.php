@@ -58,7 +58,7 @@ trait LexemeDescriptionTest {
 	 * @return TermBuffer
 	 */
 	private function getMockTermBuffer( $lookupIds, $languages ) {
-		$fetchIds = array_combine( $lookupIds, array_map( function ( $id ) {
+		$fetchIds = array_combine( $lookupIds, array_map( static function ( $id ) {
 			return new ItemId( $id );
 		}, $lookupIds ) );
 
@@ -81,13 +81,13 @@ trait LexemeDescriptionTest {
 	private function getIdParser() {
 		return new DispatchingEntityIdParser(
 			[
-				LexemeId::PATTERN => function ( $s ) {
+				LexemeId::PATTERN => static function ( $s ) {
 					return new LexemeId( $s );
 				},
-				FormId::PATTERN => function ( $s ) {
+				FormId::PATTERN => static function ( $s ) {
 					return new FormId( $s );
 				},
-				ItemId::PATTERN => function ( $s ) {
+				ItemId::PATTERN => static function ( $s ) {
 					return new ItemId( $s );
 				},
 			]

@@ -17,7 +17,7 @@ use Wikibase\Search\Elastic\Fields\StatementProviderFieldDefinitions;
 
 return [
 	'lexeme' => [
-		Def::SEARCH_FIELD_DEFINITIONS => function ( array $languageCodes, SettingsArray $searchSettings ) {
+		Def::SEARCH_FIELD_DEFINITIONS => static function ( array $languageCodes, SettingsArray $searchSettings ) {
 			$services = MediaWikiServices::getInstance();
 			$config = $services->getMainConfig();
 			if ( $config->has( 'LexemeLanguageCodePropertyId' ) ) {
@@ -39,7 +39,7 @@ return [
 					: null
 			);
 		},
-		Def::ENTITY_SEARCH_CALLBACK => function ( WebRequest $request ) {
+		Def::ENTITY_SEARCH_CALLBACK => static function ( WebRequest $request ) {
 			$entityIdParser = WikibaseRepo::getEntityIdParser();
 			$languageFallbackChainFactory = WikibaseRepo::getLanguageFallbackChainFactory();
 
@@ -67,7 +67,7 @@ return [
 		Def::FULLTEXT_SEARCH_CONTEXT => LexemeFullTextQueryBuilder::CONTEXT_LEXEME_FULLTEXT,
 	],
 	'form' => [
-		Def::ENTITY_SEARCH_CALLBACK => function ( WebRequest $request ) {
+		Def::ENTITY_SEARCH_CALLBACK => static function ( WebRequest $request ) {
 			$entityIdParser = WikibaseRepo::getEntityIdParser();
 
 			return new CombinedEntitySearchHelper(
