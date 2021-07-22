@@ -18,7 +18,7 @@ use Wikibase\Lib\Store\LanguageFallbackLabelDescriptionLookupFactory;
  */
 trait LexemeDescriptionTest {
 
-	public function setUp() : void {
+	public function setUp(): void {
 		parent::setUp();
 		if ( !class_exists( 'CirrusSearch' ) ) {
 			$this->markTestSkipped( 'CirrusSearch not installed, skipping' );
