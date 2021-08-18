@@ -6,7 +6,7 @@ use CirrusSearch\Query\FullTextQueryBuilder;
 use CirrusSearch\Search\SearchContext;
 use Elastica\Query\BoolQuery;
 use Elastica\Query\DisMax;
-use Elastica\Query\Match;
+use Elastica\Query\MatchQuery;
 use Elastica\Query\Term;
 use Language;
 use Wikibase\DataModel\Entity\EntityIdParser;
@@ -157,7 +157,7 @@ class LexemeFullTextQueryBuilder implements FullTextQueryBuilder {
 			'title.keyword' => EntitySearchUtils::normalizeId( $term, $this->entityIdParser ),
 		] );
 		// lexeme_forms.id is a lowercase_keyword so use Match to apply the analyzer
-		$formIdMatch = new Match( 'lexeme_forms.id',
+		$formIdMatch = new MatchQuery( 'lexeme_forms.id',
 			EntitySearchUtils::normalizeId( $term, $this->entityIdParser ) );
 
 		// Main query filter
@@ -207,7 +207,7 @@ class LexemeFullTextQueryBuilder implements FullTextQueryBuilder {
 		// - Depending on languages it may lack stopwords,
 		// A dedicated field used for filtering would be nice
 		foreach ( [ 'all', 'all.plain' ] as $field ) {
-			$m = new Match();
+			$m = new MatchQuery();
 			$m->setFieldQuery( $field, $query );
 			$m->setFieldOperator( $field, $operator );
 			if ( $boost ) {
