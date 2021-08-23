@@ -147,9 +147,9 @@ class LexemeHandlerTest extends EntityHandlerTestCase {
 		return array_merge(
 			wfArrayPlus2d(
 				require __DIR__ . '/../../WikibaseSearch.entitytypes.repo.php',
-				array_merge_recursive(
-					require __DIR__ . '/../../../WikibaseLexeme/WikibaseLexeme.entitytypes.php',
-					require __DIR__ . '/../../../WikibaseLexeme/WikibaseLexeme.entitytypes.repo.php'
+				wfArrayPlus2d(
+					require __DIR__ . '/../../../WikibaseLexeme/WikibaseLexeme.entitytypes.repo.php',
+					require __DIR__ . '/../../../WikibaseLexeme/WikibaseLexeme.entitytypes.php'
 				)
 			),
 			parent::getEntityTypeDefinitionsConfiguration()
