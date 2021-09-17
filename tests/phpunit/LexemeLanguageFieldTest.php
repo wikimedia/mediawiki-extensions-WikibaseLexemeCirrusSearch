@@ -5,7 +5,7 @@ namespace Wikibase\Lexeme\Search\Elastic\Tests;
 use DataValues\StringValue;
 use Wikibase\DataModel\Entity\Item;
 use Wikibase\DataModel\Entity\ItemId;
-use Wikibase\DataModel\Entity\PropertyId;
+use Wikibase\DataModel\Entity\NumericPropertyId;
 use Wikibase\DataModel\Services\Lookup\EntityLookup;
 use Wikibase\DataModel\Snak\PropertyValueSnak;
 use Wikibase\DataModel\Statement\Statement;
@@ -20,7 +20,7 @@ class LexemeLanguageFieldTest extends LexemeFieldTest {
 	/**
 	 * @return StatementList
 	 */
-	private function getStatList( PropertyId $propId, $code ) {
+	private function getStatList( NumericPropertyId $propId, $code ) {
 		$statList = new StatementList();
 		$statList->addStatement( new Statement( new PropertyValueSnak( $propId,
 			new StringValue( $code ) ) ) );
@@ -46,7 +46,7 @@ class LexemeLanguageFieldTest extends LexemeFieldTest {
 	 */
 	public function getTestData() {
 
-		$propId = new PropertyId( 'P42' );
+		$propId = new NumericPropertyId( 'P42' );
 
 		return [
 			'no property id' => [
