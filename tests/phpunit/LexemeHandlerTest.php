@@ -62,6 +62,13 @@ class LexemeHandlerTest extends EntityHandlerTestCase {
 		);
 	}
 
+	/**
+	 * @return LexemeContent
+	 */
+	protected function newEmptyContent() {
+		return new LexemeContent();
+	}
+
 	protected function newEntityContent( EntityDocument $entity = null ): EntityContent {
 		if ( $entity === null ) {
 			$entity = $this->newEntity();
