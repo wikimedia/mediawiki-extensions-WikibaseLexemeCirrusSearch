@@ -6,13 +6,13 @@ use CirrusSearch\CirrusDebugOptions;
 use CirrusSearch\CirrusSearch;
 use CirrusSearch\CirrusTestCase;
 use CirrusSearch\SearchConfig;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use Wikibase\Lexeme\Search\Elastic\LexemeFullTextQueryBuilder;
 
 /**
  * @covers \Wikibase\Lexeme\Search\Elastic\LexemeFullTextQueryBuilder
  */
-class LexemeFullTextQueryBuilderTest extends MediaWikiTestCase {
+class LexemeFullTextQueryBuilderTest extends MediaWikiIntegrationTestCase {
 	use LexemeDescriptionTest;
 
 	/**
