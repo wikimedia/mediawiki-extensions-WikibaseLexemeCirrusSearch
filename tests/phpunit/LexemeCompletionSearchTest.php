@@ -13,7 +13,7 @@ use Wikibase\Repo\WikibaseRepo;
 /**
  * @covers \Wikibase\Lexeme\Search\Elastic\LexemeSearchEntity
  */
-class LexemeCompletionSearchTest extends \MediaWikiTestCase {
+class LexemeCompletionSearchTest extends \MediaWikiIntegrationTestCase {
 
 	public function setUp(): void {
 		parent::setUp();

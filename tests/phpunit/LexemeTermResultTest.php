@@ -9,7 +9,7 @@ use Wikibase\Lexeme\Search\Elastic\LexemeTermResult;
 /**
  * @covers \Wikibase\Lexeme\Search\Elastic\LexemeTermResult
  */
-class LexemeTermResultTest extends \MediaWikiTestCase {
+class LexemeTermResultTest extends \MediaWikiIntegrationTestCase {
 	use LexemeDescriptionTest;
 
 	/**

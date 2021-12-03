@@ -5,7 +5,7 @@ use Elastica\Response;
 use Elastica\Result;
 use Elastica\ResultSet;
 use Language;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use Wikibase\Lexeme\Search\Elastic\LexemeFulltextResult;
 use Wikibase\Lexeme\Search\Elastic\LexemeResult;
 use Wikibase\Lexeme\Search\Elastic\LexemeResultSet;
@@ -18,7 +18,7 @@ use Wikibase\Lexeme\Search\Elastic\LexemeResultSet;
  * @covers \Wikibase\Lexeme\Search\Elastic\LexemeResult
  * @covers \Wikibase\Lexeme\Search\Elastic\LexemeResultSet
  */
-class LexemeFulltextResultTest extends MediaWikiTestCase {
+class LexemeFulltextResultTest extends MediaWikiIntegrationTestCase {
 	use LexemeDescriptionTest;
 
 	/**
