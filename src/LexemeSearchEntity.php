@@ -202,11 +202,6 @@ class LexemeSearchEntity implements EntitySearchHelper {
 		$searcher->getSearchContext()->setProfileContext( self::CONTEXT_LEXEME_PREFIX );
 		$result = $searcher->performSearch( $query );
 
-		// TODO: this is a hack, we need to return Status upstream instead
-		foreach ( $result->getErrors() as $error ) {
-			wfLogWarning( json_encode( $error ) );
-		}
-
 		if ( $result->isOK() ) {
 			$result = $result->getValue();
 		} else {
