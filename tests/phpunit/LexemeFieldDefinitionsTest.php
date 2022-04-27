@@ -6,6 +6,8 @@ use PHPUnit\Framework\TestCase;
 use Wikibase\DataModel\Entity\NumericPropertyId;
 use Wikibase\DataModel\Services\Lookup\EntityLookup;
 use Wikibase\Lexeme\Search\Elastic\LexemeFieldDefinitions;
+use Wikibase\Lib\EntityTypeDefinitions;
+use Wikibase\Lib\SettingsArray;
 use Wikibase\Search\Elastic\Fields\StatementProviderFieldDefinitions;
 
 /**
@@ -51,6 +53,16 @@ class LexemeFieldDefinitionsTest extends TestCase {
 			->method( 'getFields' )
 			->willReturn( [] );
 		return $definitions;
+	}
+
+	public function testProperDeclaration() {
+		$typeDefs = new EntityTypeDefinitions( require __DIR__ . '/../../WikibaseSearch.entitytypes.repo.php' );
+
+		$settings = new SettingsArray( require __DIR__ . '/../../../Wikibase/repo/config/Wikibase.default.php' );
+		/** @var $lexemeFields LexemeFieldDefinitions */
+		$lexemeFields = $typeDefs->get( EntityTypeDefinitions::SEARCH_FIELD_DEFINITIONS )['lexeme']( [ 'en' ,'fr' ],
+			$settings );
+		self::assertArrayHasKey( 'statement_count', $lexemeFields->getFields() );
 	}
 
 }

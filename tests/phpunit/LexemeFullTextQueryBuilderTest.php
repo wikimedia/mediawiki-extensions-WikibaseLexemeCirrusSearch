@@ -24,9 +24,6 @@ class LexemeFullTextQueryBuilderTest extends MediaWikiIntegrationTestCase {
 
 	public function setUp(): void {
 		parent::setUp();
-		if ( !class_exists( 'CirrusSearch' ) ) {
-			$this->markTestSkipped( 'CirrusSearch not installed, skipping' );
-		}
 		$this->setMwGlobals( 'wgLexemeUseCirrus', true );
 	}
 

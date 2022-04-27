@@ -18,18 +18,19 @@ class FormTermResultTest extends TestCase {
 	private $labels = [
 		'Q1' => [
 			'en' => 'English',
-			'qqx' => 'Anglais',
+			'fr' => 'Anglais',
 		],
 		'Q2' => [
 			'en' => 'noun',
-			'qqx' => 'nom',
+			'fr' => 'nom',
 		],
 		'Q3' => [
 			'en' => 'singular',
-			'qqx' => 'singulier'
+			'fr' => 'singulier'
 		],
 		'Q4' => [
 			'en' => 'plural',
+			'fr' => 'pluriel',
 		],
 		'Q5' => [
 			'en' => 'nominative',
@@ -185,7 +186,7 @@ class FormTermResultTest extends TestCase {
 			],
 			// In different language
 			"in language" => [
-				'qqx',
+				'fr',
 				[ 'Q1', 'Q2', 'Q3' ],
 				[
 					'_source' => [
@@ -209,8 +210,8 @@ class FormTermResultTest extends TestCase {
 						'label' => [ 'en', 'duck' ],
 						// TODO: this depends on template, not sure how to fix
 						'description' => [
-							'qqx',
-							'(wikibaselexeme-form-description: singulier, duck, L1, (wikibaselexeme-description: Anglais, nom))',
+							'fr',
+							'singulier pour : duck (L1) : (Anglais) nom',
 						],
 						'matched' => [ 'en', 'duck' ],
 						'matchedType' => 'label'
@@ -277,7 +278,7 @@ class FormTermResultTest extends TestCase {
 			],
 			// No label for feature in given language
 			"no label - fallback" => [
-				'qqx',
+				'fr',
 				[ 'Q1', 'Q5', 'Q4' ],
 				[
 					'_source' => [
@@ -300,8 +301,8 @@ class FormTermResultTest extends TestCase {
 						'id' => 'L1-F1',
 						'label' => [ 'en', 'duck' ],
 						'description' => [
-							'qqx',
-							'(wikibaselexeme-form-description: plural, duck, L1, (wikibaselexeme-description: Anglais, nominative))',
+							'fr',
+							'pluriel pour : duck (L1) : (Anglais) nominative',
 						],
 						'matched' => [ 'en', 'duck' ],
 						'matchedType' => 'label'
@@ -310,7 +311,7 @@ class FormTermResultTest extends TestCase {
 			],
 			//
 			"no label" => [
-				'qqx',
+				'fr',
 				[ 'Q1', 'Q2', 'Q6' ],
 				[
 					'_source' => [
@@ -333,9 +334,8 @@ class FormTermResultTest extends TestCase {
 						'id' => 'L1-F1',
 						'label' => [ 'en', 'duck' ],
 						'description' => [
-							'qqx',
-							'(wikibaselexeme-form-description: (wikibaselexeme-unknown-category), '
-							 . 'duck, L1, (wikibaselexeme-description: Anglais, nom))',
+							'fr',
+							'Inconnu pour : duck (L1) : (Anglais) nom',
 						],
 						'matched' => [ 'en', 'duck' ],
 						'matchedType' => 'label'

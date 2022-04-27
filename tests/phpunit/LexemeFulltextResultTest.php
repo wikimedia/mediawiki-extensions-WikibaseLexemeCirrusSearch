@@ -4,8 +4,9 @@ namespace Wikibase\Lexeme\Search\Elastic\Tests;
 use Elastica\Response;
 use Elastica\Result;
 use Elastica\ResultSet;
-use Language;
 use MediaWikiIntegrationTestCase;
+use Wikibase\DataModel\Entity\ItemId;
+use Wikibase\Lexeme\Domain\Model\FormId;
 use Wikibase\Lexeme\Search\Elastic\LexemeFulltextResult;
 use Wikibase\Lexeme\Search\Elastic\LexemeResult;
 use Wikibase\Lexeme\Search\Elastic\LexemeResultSet;
@@ -30,19 +31,20 @@ class LexemeFulltextResultTest extends MediaWikiIntegrationTestCase {
 		'Q1' => [
 			'en' => 'English',
 			'de' => 'Englische',
-			'qqx' => 'Anglais',
+			'fr' => 'Anglais',
 		],
 		'Q2' => [
 			'en' => 'noun',
 			'de' => 'Substantiv',
-			'qqx' => 'nom',
+			'fr' => 'nom',
 		],
 		'Q3' => [
 			'en' => 'singular',
-			'qqx' => 'singulier'
+			'fr' => 'singulier'
 		],
 		'Q4' => [
 			'en' => 'plural',
+			'fr' => 'pluriel',
 		],
 		'Q5' => [
 			'en' => 'nominative',
@@ -122,7 +124,7 @@ class LexemeFulltextResultTest extends MediaWikiIntegrationTestCase {
 
 			],
 			'by form id' => [
-				'qqx',
+				'fr',
 				[ 'Q1', 'Q2', 'Q3' ],
 				[
 					'_source' => [
@@ -149,14 +151,14 @@ class LexemeFulltextResultTest extends MediaWikiIntegrationTestCase {
 					'category' => 'Q2',
 					'formId' => 'L1-F2',
 					'representation' => 'moreducks',
-					'features' => [ 'Q3' ],
+					'features' => [ new ItemId( 'Q3' ) ],
 					'title' => 'moreducks',
 					'description' =>
-						'<span class="wb-itemlink-description">(wikibaselexeme-form-description: singulier, duck, L1, (wikibaselexeme-description: Anglais, nom))</span>'
+						'<span class="wb-itemlink-description">singulier pour : duck (L1) : (Anglais) nom</span>'
 				]
 			],
 			'by form repr' => [
-				'qqx',
+				'fr',
 				[ 'Q1', 'Q2', 'Q4' ],
 				[
 					'_source' => [
@@ -187,14 +189,14 @@ class LexemeFulltextResultTest extends MediaWikiIntegrationTestCase {
 					'category' => 'Q2',
 					'formId' => 'L1-F1',
 					'representation' => 'ducks',
-					'features' => [ 'Q4' ],
+					'features' => [ new ItemId( 'Q4' ) ],
 					'title' => 'ducks',
 					'description' =>
-						'<span class="wb-itemlink-description">(wikibaselexeme-form-description: plural, duck, L1, (wikibaselexeme-description: Anglais, nom))</span>'
+						'<span class="wb-itemlink-description">pluriel pour : duck (L1) : (Anglais) nom</span>'
 				]
 			],
 			'by another form repr' => [
-				'qqx',
+				'fr',
 				[ 'Q1', 'Q2', 'Q3' ],
 				[
 					'_source' => [
@@ -223,16 +225,16 @@ class LexemeFulltextResultTest extends MediaWikiIntegrationTestCase {
 					'lang' => 'Q1',
 					'langcode' => 'en',
 					'category' => 'Q2',
-					'formId' => 'L1-F2',
+					'formId' => new FormId( 'L1-F2' ),
 					'representation' => 'moregeese',
-					'features' => [ 'Q3' ],
+					'features' => [ new ItemId( 'Q3' ) ],
 					'title' => 'moregeese',
 					'description' =>
-						'<span class="wb-itemlink-description">(wikibaselexeme-form-description: singulier, duck, L1, (wikibaselexeme-description: Anglais, nom))</span>'
+						'<span class="wb-itemlink-description">singulier pour : duck (L1) : (Anglais) nom</span>'
 				]
 			],
 			'empty results' => [
-				'qqx',
+				'fr',
 				[],
 				null,
 				[]
@@ -253,7 +255,7 @@ class LexemeFulltextResultTest extends MediaWikiIntegrationTestCase {
 
 		$res = new LexemeFulltextResult(
 			$this->getIdParser(),
-			Language::factory( $displayLanguage ),
+			$this->getServiceContainer()->getLanguageFactory()->getLanguage( $displayLanguage ),
 			$termLookupFactory
 		);
 
@@ -298,11 +300,11 @@ class LexemeFulltextResultTest extends MediaWikiIntegrationTestCase {
 			'Bad category match' );
 
 		if ( isset( $expected['formId'] ) ) {
-			$this->assertSame( $expected['formId'], $rawResult['formId'],
+			$this->assertEquals( $expected['formId'], $rawResult['formId'],
 				'Bad form ID match' );
 			$this->assertSame( $expected['representation'], $rawResult['representation'],
 				'Bad representation match' );
-			$this->assertSame( $expected['features'], $rawResult['features'],
+			$this->assertArrayEquals( $expected['features'], $rawResult['features'],
 				'Bad features match' );
 		}
 
