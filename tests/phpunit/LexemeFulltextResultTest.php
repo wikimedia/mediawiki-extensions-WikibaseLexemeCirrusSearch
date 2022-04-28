@@ -29,28 +29,20 @@ class LexemeFulltextResultTest extends MediaWikiIntegrationTestCase {
 	 */
 	private $labels = [
 		'Q1' => [
-			'en' => 'English',
-			'de' => 'Englische',
-			'fr' => 'Anglais',
+			'en' => 'unit_test_en_english',
+			'de' => 'unit_test_de_english',
+			'fr' => 'unit_test_fr_english',
 		],
 		'Q2' => [
-			'en' => 'noun',
-			'de' => 'Substantiv',
-			'fr' => 'nom',
+			'en' => 'unit_test_en_noun',
+			'de' => 'unit_test_de_substantive',
+			'fr' => 'unit_test_fr_noun',
 		],
 		'Q3' => [
-			'en' => 'singular',
-			'fr' => 'singulier'
+			'fr' => 'unit_test_fr_singular'
 		],
 		'Q4' => [
-			'en' => 'plural',
-			'fr' => 'pluriel',
-		],
-		'Q5' => [
-			'en' => 'nominative',
-		],
-		'Q6' => [
-			'ru' => 'настоящее время'
+			'fr' => 'unit_test_fr_plural',
 		]
 	];
 
@@ -75,7 +67,8 @@ class LexemeFulltextResultTest extends MediaWikiIntegrationTestCase {
 					'langcode' => 'en',
 					'category' => 'Q2',
 					'title' => 'duck',
-					'description' => '<span class="wb-itemlink-description">English, noun</span>'
+					// e.g. '<span class="wb-itemlink-description">English, noun</span>'
+					'description_contains' => [ 'unit_test_en_english', 'unit_test_en_noun' ]
 				]
 			],
 			"by lemma de" => [
@@ -97,7 +90,8 @@ class LexemeFulltextResultTest extends MediaWikiIntegrationTestCase {
 					'langcode' => 'en',
 					'category' => 'Q2',
 					'title' => 'duck',
-					'description' => '<span class="wb-itemlink-description">Englische, Substantiv</span>'
+					// e.g. '<span class="wb-itemlink-description">Englische, Substantiv</span>'
+					'description_contains' => [ 'unit_test_de_substantive', 'unit_test_de_english' ]
 				]
 			],
 			'by id' => [
@@ -119,7 +113,8 @@ class LexemeFulltextResultTest extends MediaWikiIntegrationTestCase {
 					'langcode' => 'en',
 					'category' => 'Q2',
 					'title' => 'duck',
-					'description' => '<span class="wb-itemlink-description">English, noun</span>'
+					// e.g. '<span class="wb-itemlink-description">English, noun</span>'
+					'description_contains' => [ 'unit_test_en_english', 'unit_test_en_noun' ]
 				]
 
 			],
@@ -153,8 +148,8 @@ class LexemeFulltextResultTest extends MediaWikiIntegrationTestCase {
 					'representation' => 'moreducks',
 					'features' => [ new ItemId( 'Q3' ) ],
 					'title' => 'moreducks',
-					'description' =>
-						'<span class="wb-itemlink-description">singulier pour : duck (L1) : (Anglais) nom</span>'
+					// e.g. '<span class="wb-itemlink-description">singulier pour : duck (L1) : (Anglais) nom</span>'
+					'description_contains' => [ 'unit_test_fr_singular', 'duck', 'unit_test_fr_english' ]
 				]
 			],
 			'by form repr' => [
@@ -191,8 +186,8 @@ class LexemeFulltextResultTest extends MediaWikiIntegrationTestCase {
 					'representation' => 'ducks',
 					'features' => [ new ItemId( 'Q4' ) ],
 					'title' => 'ducks',
-					'description' =>
-						'<span class="wb-itemlink-description">pluriel pour : duck (L1) : (Anglais) nom</span>'
+					// e.g. '<span class="wb-itemlink-description">pluriel pour : duck (L1) : (Anglais) nom</span>'
+					'description_contains' => [ 'unit_test_fr_plural', 'duck', 'unit_test_fr_noun' ]
 				]
 			],
 			'by another form repr' => [
@@ -229,8 +224,8 @@ class LexemeFulltextResultTest extends MediaWikiIntegrationTestCase {
 					'representation' => 'moregeese',
 					'features' => [ new ItemId( 'Q3' ) ],
 					'title' => 'moregeese',
-					'description' =>
-						'<span class="wb-itemlink-description">singulier pour : duck (L1) : (Anglais) nom</span>'
+					// e.g. '<span class="wb-itemlink-description">singulier pour : duck (L1) : (Anglais) nom</span>'
+					'description_contains' => [ 'unit_test_fr_singular', 'duck', 'unit_test_fr_english' ]
 				]
 			],
 			'empty results' => [
@@ -317,8 +312,10 @@ class LexemeFulltextResultTest extends MediaWikiIntegrationTestCase {
 		 * @var LexemeResult $result
 		 */
 		$this->assertSame( $expected['title'], $result->getTitleSnippet(), "Bad title" );
-		$this->assertSame( $expected['description'], $result->getTextSnippet(),
-			"Bad description" );
+		foreach ( $expected['description_contains'] as $expectedDescriptionWord ) {
+			$this->assertStringContainsString( $expectedDescriptionWord, $result->getTextSnippet(),
+				"Expected the word [$expectedDescriptionWord] to appear in the description" );
+		}
 	}
 
 }

@@ -19,18 +19,18 @@ class LexemeTermResultTest extends \MediaWikiIntegrationTestCase {
 	 */
 	private $labels = [
 		'Q1' => [
-			'en' => 'English',
-			'de' => 'Englische',
-			'fr' => 'Anglais',
+			'en' => 'unit_test_en_english',
+			'de' => 'unit_test_de_english',
+			'fr' => 'unit_test_fr_english',
 		],
 		'Q2' => [
-			'en' => 'noun',
-			'de' => 'Substantiv',
-			'fr' => 'nom',
+			'en' => 'unit_test_en_noun',
+			'de' => 'unit_test_de_substantive',
+			'fr' => 'unit_test_fr_noun',
 		],
 		'Q3' => [
-			'ru' => 'превед',
-		],
+			'ru' => 'unit_test_ru_unused'
+		]
 	];
 
 	public function termResultsProvider() {
@@ -50,7 +50,8 @@ class LexemeTermResultTest extends \MediaWikiIntegrationTestCase {
 				[
 					'id' => 'L1',
 					'label' => [ 'en', 'duck' ],
-					'description' => [ 'en', 'English, noun' ],
+					// e.g. English, noun
+					'description' => [ 'en', [ 'unit_test_en_english', 'unit_test_en_noun' ] ],
 					'matched' => [ 'en', 'duck' ],
 					'matchedType' => 'label'
 				]
@@ -70,7 +71,8 @@ class LexemeTermResultTest extends \MediaWikiIntegrationTestCase {
 				[
 					'id' => 'L2',
 					'label' => [ 'en', 'duck' ],
-					'description' => [ 'en', 'English, noun' ],
+					// e.g. English, noun
+					'description' => [ 'en', [ 'unit_test_en_english', 'unit_test_en_noun' ] ],
 					'matched' => [ 'qid', 'L2' ],
 					'matchedType' => 'entityId'
 				]
@@ -90,7 +92,8 @@ class LexemeTermResultTest extends \MediaWikiIntegrationTestCase {
 				[
 					'id' => 'L2',
 					'label' => [ 'und', 'duck' ],
-					'description' => [ 'en', 'English, noun' ],
+					// e.g. English, noun
+					'description' => [ 'en', [ 'unit_test_en_english', 'unit_test_en_noun' ] ],
 					'matched' => [ 'qid', 'L2' ],
 					'matchedType' => 'entityId'
 				]
@@ -110,7 +113,8 @@ class LexemeTermResultTest extends \MediaWikiIntegrationTestCase {
 				[
 					'id' => 'L2',
 					'label' => [ 'en', 'duck' ],
-					'description' => [ 'en', 'English, noun' ],
+					// e.g. English, noun
+					'description' => [ 'en', [ 'unit_test_en_english', 'unit_test_en_noun' ] ],
 					'matched' => [ 'en', 'geese' ],
 					'matchedType' => 'alias'
 				]
@@ -130,7 +134,8 @@ class LexemeTermResultTest extends \MediaWikiIntegrationTestCase {
 				[
 					'id' => 'L2',
 					'label' => [ 'und', 'duck' ],
-					'description' => [ 'en', 'English, noun' ],
+					// e.g. English, noun
+					'description' => [ 'en', [ 'unit_test_en_english', 'unit_test_en_noun' ] ],
 					'matched' => [ 'und', 'duck' ],
 					'matchedType' => 'label'
 				]
@@ -150,7 +155,8 @@ class LexemeTermResultTest extends \MediaWikiIntegrationTestCase {
 				[
 					'id' => 'L1',
 					'label' => [ 'en', 'duck' ],
-					'description' => [ 'de', 'Englische, Substantiv' ],
+					// e.g. 'Englische, Substantiv'
+					'description' => [ 'de', [ 'unit_test_de_english', 'unit_test_de_substantive' ] ],
 					'matched' => [ 'en', 'duck' ],
 					'matchedType' => 'label'
 				]
@@ -170,7 +176,8 @@ class LexemeTermResultTest extends \MediaWikiIntegrationTestCase {
 				[
 					'id' => 'L1',
 					'label' => [ 'en', 'duck' ],
-					'description' => [ 'de-ch', 'Englische, Substantiv' ],
+					// e.g. 'Englische, Substantiv'
+					'description' => [ 'de-ch', [ 'unit_test_de_english', 'unit_test_de_substantive' ] ],
 					'matched' => [ 'en', 'duck' ],
 					'matchedType' => 'label'
 				]
@@ -190,7 +197,9 @@ class LexemeTermResultTest extends \MediaWikiIntegrationTestCase {
 				[
 					'id' => 'L1',
 					'label' => [ 'en', 'duck' ],
-					'description' => [ 'en', 'English, Unknown' ],
+					// e.g. 'English, Unknown'
+					// TODO: find a way to test 'Unknown' without relying on the translations
+					'description' => [ 'en', [ 'unit_test_en_english' ] ],
 					'matched' => [ 'en', 'duck' ],
 					'matchedType' => 'label'
 				]
@@ -210,7 +219,9 @@ class LexemeTermResultTest extends \MediaWikiIntegrationTestCase {
 				[
 					'id' => 'L1',
 					'label' => [ 'en', 'duck' ],
-					'description' => [ 'en', 'Unknown language, noun' ],
+					// e.g. 'Unknown language, noun'
+					// TODO: find a way to test 'Unknown language' without relying on the translations
+					'description' => [ 'en', [ 'unit_test_en_noun' ] ],
 					'matched' => [ 'en', 'duck' ],
 					'matchedType' => 'label'
 				]
@@ -270,8 +281,10 @@ class LexemeTermResultTest extends \MediaWikiIntegrationTestCase {
 			$this->assertSame( $expected['description'][0],
 				$converted->getDisplayDescription()->getLanguageCode(),
 				'Description language is wrong' );
-			$this->assertSame( $expected['description'][1],
-				$converted->getDisplayDescription()->getText(), 'Description text is wrong' );
+			foreach ( $expected['description'][1] as $word ) {
+				$this->assertStringContainsString( $word, $converted->getDisplayDescription()->getText(),
+					"Description text should contain the word  [$word]" );
+			}
 		} else {
 			$this->assertNull( $converted->getDisplayDescription() );
 		}
