@@ -62,6 +62,11 @@ class LexemeFulltextResult extends BaseResultsType {
 				LexemeCategoryField::NAME,
 				FormsField::NAME,
 				StatementCountField::NAME,
+				// The web ui for fulltext search expects this to be returned.
+				// Longer term there should probably be some concept where the UI
+				// requests additional properties instead of baking it in at these
+				// lower levels for each fulltext results type.
+				'timestamp',
 		] );
 	}
 
