@@ -5,10 +5,11 @@
 			"Gomoko",
 			"Oupsa",
 			"Tpt",
+			"Verdy p",
 			"Wladek92",
 			"Yzelf"
 		]
 	},
-	"wikibaselexemecirrus-desc": "Extension WikibaseLexeme pour utiliser la fonctionnalité CirrusSearch",
-	"wikibaselexemecirrus-rescore-profile-prefix": "Noter de nouveau le profil pour la recherche de préfixe (complétude)"
+	"wikibaselexemecirrus-desc": "Extension de WikibaseLexeme pour utiliser la fonctionnalité CirrusSearch",
+	"wikibaselexemecirrus-rescore-profile-prefix": "Noter de nouveau le profil pour la recherche de préfixe (complétion)"
 }
