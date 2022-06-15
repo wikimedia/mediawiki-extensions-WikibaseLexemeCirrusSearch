@@ -192,14 +192,16 @@ class LexemeSearchEntity implements EntitySearchHelper {
 		$languageCode,
 		$entityType,
 		$limit,
-		$strictLanguage
+		$strictLanguage,
+		?string $profileContext = null
 	) {
+		$profileContext = $profileContext ?? self::CONTEXT_LEXEME_PREFIX;
 		$searcher = new WikibasePrefixSearcher( 0, $limit, $this->debugOptions );
+		$searcher->getSearchContext()->setProfileContext( $profileContext );
 		$query = $this->getElasticSearchQuery( $text, $entityType, $searcher->getSearchContext() );
 
 		$searcher->setResultsType( $this->makeResultType() );
 
-		$searcher->getSearchContext()->setProfileContext( self::CONTEXT_LEXEME_PREFIX );
 		$result = $searcher->performSearch( $query );
 
 		if ( $result->isOK() ) {
