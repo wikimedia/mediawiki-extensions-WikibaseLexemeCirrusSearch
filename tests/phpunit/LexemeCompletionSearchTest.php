@@ -29,8 +29,7 @@ class LexemeCompletionSearchTest extends \MediaWikiIntegrationTestCase {
 			new BasicEntityIdParser(),
 			new \FauxRequest(),
 			$userLang,
-			WikibaseRepo::getLanguageFallbackChainFactory(),
-			WikibaseRepo::getPrefetchingTermLookup(),
+			WikibaseRepo::getFallbackLabelDescriptionLookupFactory(),
 			CirrusDebugOptions::forDumpingQueriesInUnitTests()
 		);
 	}
@@ -44,8 +43,7 @@ class LexemeCompletionSearchTest extends \MediaWikiIntegrationTestCase {
 			new BasicEntityIdParser(),
 			new \FauxRequest(),
 			$userLang,
-			WikibaseRepo::getLanguageFallbackChainFactory(),
-			WikibaseRepo::getPrefetchingTermLookup(),
+			WikibaseRepo::getFallbackLabelDescriptionLookupFactory(),
 			CirrusDebugOptions::forDumpingQueriesInUnitTests()
 		);
 	}
