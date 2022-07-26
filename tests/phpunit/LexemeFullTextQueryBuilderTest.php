@@ -8,12 +8,13 @@ use CirrusSearch\CirrusTestCase;
 use CirrusSearch\SearchConfig;
 use MediaWikiIntegrationTestCase;
 use Wikibase\Lexeme\Search\Elastic\LexemeFullTextQueryBuilder;
+use Wikibase\Lexeme\Tests\MediaWiki\LexemeDescriptionTestCase;
 
 /**
  * @covers \Wikibase\Lexeme\Search\Elastic\LexemeFullTextQueryBuilder
  */
 class LexemeFullTextQueryBuilderTest extends MediaWikiIntegrationTestCase {
-	use LexemeDescriptionTest;
+	use LexemeDescriptionTestCase;
 
 	/**
 	 * @var array search settings for the test
