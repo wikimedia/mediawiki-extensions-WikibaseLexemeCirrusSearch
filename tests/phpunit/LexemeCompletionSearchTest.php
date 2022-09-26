@@ -30,7 +30,7 @@ class LexemeCompletionSearchTest extends \MediaWikiIntegrationTestCase {
 			new \FauxRequest(),
 			$userLang,
 			WikibaseRepo::getFallbackLabelDescriptionLookupFactory(),
-			CirrusDebugOptions::forDumpingQueriesInUnitTests( false )
+			CirrusDebugOptions::forDumpingQueriesInUnitTests()
 		);
 	}
 
@@ -44,7 +44,7 @@ class LexemeCompletionSearchTest extends \MediaWikiIntegrationTestCase {
 			new \FauxRequest(),
 			$userLang,
 			WikibaseRepo::getFallbackLabelDescriptionLookupFactory(),
-			CirrusDebugOptions::forDumpingQueriesInUnitTests( false )
+			CirrusDebugOptions::forDumpingQueriesInUnitTests()
 		);
 	}
 
