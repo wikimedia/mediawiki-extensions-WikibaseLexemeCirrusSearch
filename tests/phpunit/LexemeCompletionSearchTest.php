@@ -30,7 +30,7 @@ class LexemeCompletionSearchTest extends \MediaWikiIntegrationTestCase {
 			new \FauxRequest(),
 			$userLang,
 			WikibaseRepo::getFallbackLabelDescriptionLookupFactory(),
-			CirrusDebugOptions::forDumpingQueriesInUnitTests()
+			CirrusDebugOptions::forDumpingQueriesInUnitTests( false )
 		);
 	}
 
@@ -44,7 +44,7 @@ class LexemeCompletionSearchTest extends \MediaWikiIntegrationTestCase {
 			new \FauxRequest(),
 			$userLang,
 			WikibaseRepo::getFallbackLabelDescriptionLookupFactory(),
-			CirrusDebugOptions::forDumpingQueriesInUnitTests()
+			CirrusDebugOptions::forDumpingQueriesInUnitTests( false )
 		);
 	}
 
@@ -73,12 +73,11 @@ class LexemeCompletionSearchTest extends \MediaWikiIntegrationTestCase {
 			$term, 'test' /* not used so far */,
 			'lexeme', 10, false
 		);
-		$decodedQuery = json_decode( $elasticQuery, true );
-		$decodedQuery = $decodedQuery['__main__'] ?? $decodedQuery;
-		unset( $decodedQuery['path'] );
+		$elasticQuery = $elasticQuery['__main__'] ?? $elasticQuery;
+		unset( $elasticQuery['path'] );
 		// T206100
 		$this->setIniSetting( 'serialize_precision', 10 );
-		$encodedData = CirrusTestCase::encodeFixture( $decodedQuery );
+		$encodedData = CirrusTestCase::encodeFixture( $elasticQuery );
 
 		$this->assertFileContains(
 			__DIR__ . "/../data/lexemeCompletionSearch/$expected.expected",
@@ -97,13 +96,12 @@ class LexemeCompletionSearchTest extends \MediaWikiIntegrationTestCase {
 			$term, 'test' /* not used so far */,
 			'form', 10, false
 		);
-		$decodedQuery = json_decode( $elasticQuery, true );
-		$decodedQuery = $decodedQuery['__main__'] ?? $decodedQuery;
-		unset( $decodedQuery['path'] );
+		$elasticQuery = $elasticQuery['__main__'] ?? $elasticQuery;
+		unset( $elasticQuery['path'] );
 
 		// T206100
 		$this->setIniSetting( 'serialize_precision', 10 );
-		$encodedData = CirrusTestCase::encodeFixture( $decodedQuery );
+		$encodedData = CirrusTestCase::encodeFixture( $elasticQuery );
 
 		$this->assertFileContains(
 			__DIR__ . "/../data/lexemeCompletionSearch/$expected.form.expected",
