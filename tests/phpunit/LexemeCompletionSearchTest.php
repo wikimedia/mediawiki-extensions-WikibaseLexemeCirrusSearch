@@ -79,9 +79,6 @@ class LexemeCompletionSearchTest extends \MediaWikiIntegrationTestCase {
 		$this->setIniSetting( 'serialize_precision', 10 );
 		$encodedData = CirrusTestCase::encodeFixture( $elasticQuery );
 
-		/** Temporary hax for I4a9897fbe8 */
-		$encodedData = str_replace( '"stored_fields"', '"fields"', $encodedData );
-
 		$this->assertFileContains(
 			__DIR__ . "/../data/lexemeCompletionSearch/$expected.expected",
 			$encodedData,
@@ -105,9 +102,6 @@ class LexemeCompletionSearchTest extends \MediaWikiIntegrationTestCase {
 		// T206100
 		$this->setIniSetting( 'serialize_precision', 10 );
 		$encodedData = CirrusTestCase::encodeFixture( $elasticQuery );
-
-		/** Temporary hax for I4a9897fbe8 */
-		$encodedData = str_replace( '"stored_fields"', '"fields"', $encodedData );
 
 		$this->assertFileContains(
 			__DIR__ . "/../data/lexemeCompletionSearch/$expected.form.expected",

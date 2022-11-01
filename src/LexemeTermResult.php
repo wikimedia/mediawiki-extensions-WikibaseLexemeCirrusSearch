@@ -75,14 +75,6 @@ class LexemeTermResult extends BaseResultsType {
 	}
 
 	/**
-	 * ES5 variant of getFields.
-	 * @return string[]
-	 */
-	public function getStoredFields() {
-		return [];
-	}
-
-	/**
 	 * Get the highlighting configuration.
 	 *
 	 * @param array $highlightSource configuration for how to highlight the source.
