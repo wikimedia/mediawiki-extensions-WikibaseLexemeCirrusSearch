@@ -83,7 +83,7 @@
             "lexical_category",
             "lexeme_forms"
         ],
-        "stored_fields": [],
+        "fields": [],
         "highlight": {
             "pre_tags": [
                 ""

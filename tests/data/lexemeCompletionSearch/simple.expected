@@ -112,7 +112,7 @@
             "lexeme_language",
             "lexical_category"
         ],
-        "stored_fields": [],
+        "fields": [],
         "highlight": {
             "pre_tags": [
                 ""
