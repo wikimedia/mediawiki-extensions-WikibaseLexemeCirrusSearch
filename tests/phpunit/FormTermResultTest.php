@@ -3,7 +3,7 @@ namespace Wikibase\Lexeme\Search\Elastic\Tests;
 
 use Elastica\Result;
 use Elastica\ResultSet;
-use Language;
+use MediaWiki\MediaWikiServices;
 use PHPUnit\Framework\TestCase;
 use Wikibase\Lexeme\Search\Elastic\FormTermResult;
 use Wikibase\Lexeme\Tests\MediaWiki\LexemeDescriptionTestCase;
@@ -360,7 +360,7 @@ class FormTermResultTest extends TestCase {
 
 		$res = new FormTermResult(
 			$this->getIdParser(),
-			Language::factory( $displayLanguage ),
+			MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( $displayLanguage ),
 			$termLookupFactory,
 			2
 		);
