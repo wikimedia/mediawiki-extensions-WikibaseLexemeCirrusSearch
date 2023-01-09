@@ -68,7 +68,7 @@ class LexemeCompletionSearchTest extends \MediaWikiIntegrationTestCase {
 	 * @param string $expected Expected result filename
 	 */
 	public function testSearchElastic( $term, $expected ) {
-		$search = $this->newEntitySearch( Language::factory( 'en' ) );
+		$search = $this->newEntitySearch( $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' ) );
 		$elasticQuery = $search->getRankedSearchResults(
 			$term, 'test' /* not used so far */,
 			'lexeme', 10, false
@@ -91,7 +91,7 @@ class LexemeCompletionSearchTest extends \MediaWikiIntegrationTestCase {
 	 * @param string $expected Expected result filename
 	 */
 	public function testSearchFormElastic( $term, $expected ) {
-		$search = $this->newFormSearch( Language::factory( 'en' ) );
+		$search = $this->newFormSearch( $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' ) );
 		$elasticQuery = $search->getRankedSearchResults(
 			$term, 'test' /* not used so far */,
 			'form', 10, false

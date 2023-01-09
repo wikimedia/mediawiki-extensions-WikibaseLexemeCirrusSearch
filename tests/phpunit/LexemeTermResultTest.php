@@ -3,7 +3,6 @@ namespace Wikibase\Lexeme\Search\Elastic\Tests;
 
 use Elastica\Result;
 use Elastica\ResultSet;
-use Language;
 use Wikibase\Lexeme\Search\Elastic\LexemeTermResult;
 use Wikibase\Lexeme\Tests\MediaWiki\LexemeDescriptionTestCase;
 
@@ -244,7 +243,7 @@ class LexemeTermResultTest extends \MediaWikiIntegrationTestCase {
 
 		$res = new LexemeTermResult(
 			$this->getIdParser(),
-			Language::factory( $displayLanguage ),
+			$this->getServiceContainer()->getLanguageFactory()->getLanguage( $displayLanguage ),
 			$termLookupFactory
 		);
 
