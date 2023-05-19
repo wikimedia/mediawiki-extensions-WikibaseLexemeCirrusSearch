@@ -5,6 +5,7 @@ namespace Wikibase\Lexeme\Search\Elastic\Tests;
 use CirrusSearch\CirrusDebugOptions;
 use CirrusSearch\CirrusTestCase;
 use Language;
+use MediaWiki\Request\FauxRequest;
 use Wikibase\DataModel\Entity\BasicEntityIdParser;
 use Wikibase\Lexeme\Search\Elastic\FormSearchEntity;
 use Wikibase\Lexeme\Search\Elastic\LexemeSearchEntity;
@@ -27,7 +28,7 @@ class LexemeCompletionSearchTest extends \MediaWikiIntegrationTestCase {
 	private function newEntitySearch( Language $userLang ) {
 		return new LexemeSearchEntity(
 			new BasicEntityIdParser(),
-			new \FauxRequest(),
+			new FauxRequest(),
 			$userLang,
 			WikibaseRepo::getFallbackLabelDescriptionLookupFactory(),
 			CirrusDebugOptions::forDumpingQueriesInUnitTests()
@@ -41,7 +42,7 @@ class LexemeCompletionSearchTest extends \MediaWikiIntegrationTestCase {
 	private function newFormSearch( Language $userLang ) {
 		return new FormSearchEntity(
 			new BasicEntityIdParser(),
-			new \FauxRequest(),
+			new FauxRequest(),
 			$userLang,
 			WikibaseRepo::getFallbackLabelDescriptionLookupFactory(),
 			CirrusDebugOptions::forDumpingQueriesInUnitTests()
