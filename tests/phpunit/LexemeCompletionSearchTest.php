@@ -49,7 +49,7 @@ class LexemeCompletionSearchTest extends \MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function searchDataProvider() {
+	public static function searchDataProvider() {
 		return [
 			"simple" => [
 				'Duck',

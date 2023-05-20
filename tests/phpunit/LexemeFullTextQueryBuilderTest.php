@@ -28,7 +28,7 @@ class LexemeFullTextQueryBuilderTest extends MediaWikiIntegrationTestCase {
 		$this->setMwGlobals( 'wgLexemeUseCirrus', true );
 	}
 
-	public function searchDataProvider() {
+	public static function searchDataProvider() {
 		return [
 			"work" => [
 				"duck",

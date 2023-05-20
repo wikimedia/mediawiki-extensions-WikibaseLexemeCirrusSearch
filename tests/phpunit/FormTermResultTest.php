@@ -41,7 +41,7 @@ class FormTermResultTest extends TestCase {
 		]
 	];
 
-	public function termResultsProvider() {
+	public static function termResultsProvider() {
 		return [
 			"one form" => [
 				'en',

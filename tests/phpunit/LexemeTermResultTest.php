@@ -33,7 +33,7 @@ class LexemeTermResultTest extends \MediaWikiIntegrationTestCase {
 		]
 	];
 
-	public function termResultsProvider() {
+	public static function termResultsProvider() {
 		return [
 			"by lemma" => [
 				'en',
