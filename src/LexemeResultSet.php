@@ -61,7 +61,6 @@ class LexemeResultSet extends BaseCirrusSearchResultSet {
 	/**
 	 * @param Result $result
 	 * @return LexemeResult|null
-	 * @throws \MWException
 	 */
 	protected function transformOneResult( Result $result ) {
 		$hash = spl_object_hash( $result );

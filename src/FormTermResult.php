@@ -282,7 +282,6 @@ class FormTermResult extends BaseResultsType {
 	 * @param string $langCode
 	 * @param array $raw
 	 * @return TermSearchResult
-	 * @throws \MWException
 	 */
 	private function produceTermResult(
 		LexemeDescription $descriptionMaker,

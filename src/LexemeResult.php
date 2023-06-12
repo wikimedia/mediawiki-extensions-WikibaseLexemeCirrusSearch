@@ -35,7 +35,6 @@ class LexemeResult extends Result {
 	 * @param Language $displayLanguage
 	 * @param LexemeDescription $descriptionMaker
 	 * @param array $result Result from LexemeFulltextResult
-	 * @throws \MWException
 	 */
 	public function __construct(
 		Language $displayLanguage,

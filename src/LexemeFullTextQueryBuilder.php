@@ -67,7 +67,6 @@ class LexemeFullTextQueryBuilder implements FullTextQueryBuilder {
 	 * Create fulltext builder from global environment.
 	 * @param array $settings Configuration from config file
 	 * @return LexemeFullTextQueryBuilder
-	 * @throws \MWException
 	 */
 	public static function newFromGlobals( array $settings ) {
 		return new static(
@@ -83,7 +82,6 @@ class LexemeFullTextQueryBuilder implements FullTextQueryBuilder {
 	 *
 	 * @param SearchContext $searchContext
 	 * @param string $term term to search
-	 * @throws \MWException
 	 */
 	public function build( SearchContext $searchContext, $term ) {
 		if ( $searchContext->areResultsPossible() && !$searchContext->isSpecialKeywordUsed() ) {
