@@ -48,7 +48,7 @@ return [
 						WikibaseRepo::getEntityLookup(),
 						$entityIdParser,
 						$fallbackTermLookupFactory->newLabelDescriptionLookup( WikibaseRepo::getUserLanguage() ),
-						WikibaseRepo::getEntityTypeToRepositoryMapping()
+						WikibaseRepo::getEnabledEntityTypes()
 					),
 					new LexemeSearchEntity(
 						$entityIdParser,
@@ -71,7 +71,7 @@ return [
 						WikibaseRepo::getEntityLookup(),
 						$entityIdParser,
 						new NullLabelDescriptionLookup(),
-						WikibaseRepo::getEntityTypeToRepositoryMapping()
+						WikibaseRepo::getEnabledEntityTypes()
 					),
 					new FormSearchEntity(
 						$entityIdParser,
