@@ -19,6 +19,8 @@ use Wikibase\Lexeme\Tests\MediaWiki\LexemeDescriptionTestCase;
  * @covers \Wikibase\Lexeme\Search\Elastic\LexemeFulltextResult
  * @covers \Wikibase\Lexeme\Search\Elastic\LexemeResult
  * @covers \Wikibase\Lexeme\Search\Elastic\LexemeResultSet
+ *
+ * @group Database
  */
 class LexemeFulltextResultTest extends MediaWikiIntegrationTestCase {
 	use LexemeDescriptionTestCase;
