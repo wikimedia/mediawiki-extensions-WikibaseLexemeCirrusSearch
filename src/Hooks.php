@@ -5,6 +5,7 @@ namespace Wikibase\Lexeme\Search\Elastic;
 use CirrusSearch\Profile\ConfigProfileRepository;
 use CirrusSearch\Profile\SearchProfileService;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Search\Hook\ShowSearchHitHook;
 use SearchResult;
 use SpecialSearch;
 use Wikibase\Lib\WikibaseSettings;
@@ -15,7 +16,7 @@ use Wikibase\Search\Elastic\EntitySearchElastic;
  *
  * @license GPL-2.0-or-later
  */
-class Hooks {
+class Hooks implements ShowSearchHitHook {
 
 	/**
 	 * Adds the definition of the lexeme entity type to the definitions array Wikibase uses.
@@ -121,8 +122,8 @@ class Hooks {
 	 * @param $related
 	 * @param $html
 	 */
-	public static function onShowSearchHit( SpecialSearch $searchPage, SearchResult $result,
-		array $terms, &$link, &$redirect, &$section, &$extract, &$score, &$size, &$date, &$related,
+	public function onShowSearchHit( $searchPage, $result,
+		$terms, &$link, &$redirect, &$section, &$extract, &$score, &$size, &$date, &$related,
 		&$html
 	) {
 
