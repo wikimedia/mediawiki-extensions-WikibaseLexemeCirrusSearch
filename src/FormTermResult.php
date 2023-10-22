@@ -259,7 +259,7 @@ class FormTermResult extends BaseResultsType {
 		}
 
 		$langCode = $this->displayLanguage->getCode();
-		if ( empty( $rawResults ) ) {
+		if ( !$rawResults ) {
 			return [];
 		}
 		// Create prefetched lookup

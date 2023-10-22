@@ -276,7 +276,7 @@ class LexemeFulltextResult extends BaseResultsType {
 			}
 		}
 
-		if ( empty( $rawResults ) ) {
+		if ( !$rawResults ) {
 			return new \CirrusSearch\Search\ResultSet();
 		}
 		// Create prefetched lookup
