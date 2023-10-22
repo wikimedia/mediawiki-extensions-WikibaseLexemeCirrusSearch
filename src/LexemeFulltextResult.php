@@ -154,7 +154,7 @@ class LexemeFulltextResult extends BaseResultsType {
 				break;
 			}
 		}
-		if ( empty( $repr ) ) {
+		if ( $repr === '' ) {
 			// Didn't find the right id? Weird, skip it.
 			return null;
 		}
