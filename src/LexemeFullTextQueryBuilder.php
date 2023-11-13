@@ -160,7 +160,7 @@ class LexemeFullTextQueryBuilder implements FullTextQueryBuilder {
 
 		// Near match ones, they use constant score
 		$nearMatchQuery = new DisMax();
-		$nearMatchQuery->setTieBreaker( 0 );
+		$nearMatchQuery->setTieBreaker( $profile['tie-breaker'] ?? 0 );
 		foreach ( $fields as $field ) {
 			$nearMatchQuery->addQuery( EntitySearchUtils::makeConstScoreQuery( $field[0], $field[1],
 				$term ) );
