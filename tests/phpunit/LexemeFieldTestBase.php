@@ -10,7 +10,7 @@ use Wikibase\Repo\Search\Fields\WikibaseIndexField;
 /**
  * Lemma field test.
  */
-abstract class LexemeFieldTest extends TestCase {
+abstract class LexemeFieldTestBase extends TestCase {
 	protected const CATEGORY_ID = 'Q456';
 	protected const LANGUAGE_ID = 'Q123';
 

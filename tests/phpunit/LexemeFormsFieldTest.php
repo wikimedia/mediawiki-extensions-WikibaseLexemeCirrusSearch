@@ -7,7 +7,7 @@ use Wikibase\Lexeme\Search\Elastic\FormsField;
 /**
  * @covers \Wikibase\Lexeme\Search\Elastic\FormsField
  */
-class LexemeFormsFieldTest extends LexemeFieldTest {
+class LexemeFormsFieldTest extends LexemeFieldTestBase {
 
 	/**
 	 * @return array

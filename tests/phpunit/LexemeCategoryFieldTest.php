@@ -7,7 +7,7 @@ use Wikibase\Lexeme\Search\Elastic\LexemeCategoryField;
 /**
  * @covers \Wikibase\Lexeme\Search\Elastic\LexemeCategoryField
  */
-class LexemeCategoryFieldTest extends LexemeFieldTest {
+class LexemeCategoryFieldTest extends LexemeFieldTestBase {
 
 	/**
 	 * @return array

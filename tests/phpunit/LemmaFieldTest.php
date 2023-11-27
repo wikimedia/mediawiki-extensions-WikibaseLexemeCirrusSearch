@@ -7,7 +7,7 @@ use Wikibase\Lexeme\Search\Elastic\LemmaField;
 /**
  * @covers \Wikibase\Lexeme\Search\Elastic\LemmaField
  */
-class LemmaFieldTest extends LexemeFieldTest {
+class LemmaFieldTest extends LexemeFieldTestBase {
 
 	/**
 	 * @return array

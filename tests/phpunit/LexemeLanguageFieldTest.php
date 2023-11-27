@@ -15,7 +15,7 @@ use Wikibase\Lexeme\Search\Elastic\LexemeLanguageField;
 /**
  * @covers \Wikibase\Lexeme\Search\Elastic\LexemeLanguageField
  */
-class LexemeLanguageFieldTest extends LexemeFieldTest {
+class LexemeLanguageFieldTest extends LexemeFieldTestBase {
 
 	/**
 	 * @return StatementList
