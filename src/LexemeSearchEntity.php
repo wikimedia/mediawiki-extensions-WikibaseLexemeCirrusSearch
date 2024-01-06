@@ -11,6 +11,7 @@ use Elastica\Query\MatchNone;
 use Elastica\Query\MatchQuery;
 use Elastica\Query\Term;
 use Language;
+use MediaWiki\Request\WebRequest;
 use Wikibase\DataModel\Entity\EntityIdParser;
 use Wikibase\Lexeme\MediaWiki\Content\LexemeContent;
 use Wikibase\Lib\Store\FallbackLabelDescriptionLookupFactory;
@@ -36,7 +37,7 @@ class LexemeSearchEntity implements EntitySearchHelper {
 	/**
 	 * Web request context.
 	 * Used for implementing debug features such as cirrusDumpQuery.
-	 * @var \WebRequest
+	 * @var WebRequest
 	 */
 	private $request;
 	/**
@@ -55,7 +56,7 @@ class LexemeSearchEntity implements EntitySearchHelper {
 
 	public function __construct(
 		EntityIdParser $idParser,
-		\WebRequest $request,
+		WebRequest $request,
 		Language $userLanguage,
 		FallbackLabelDescriptionLookupFactory $lookupFactory,
 		CirrusDebugOptions $options = null

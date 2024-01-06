@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Request\WebRequest;
 use Wikibase\DataModel\Services\Lookup\InProcessCachingDataTypeLookup;
 use Wikibase\Lexeme\DataAccess\Store\NullLabelDescriptionLookup;
 use Wikibase\Lexeme\Search\Elastic\FormSearchEntity;

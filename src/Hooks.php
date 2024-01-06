@@ -6,8 +6,8 @@ use CirrusSearch\Profile\ConfigProfileRepository;
 use CirrusSearch\Profile\SearchProfileService;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Search\Hook\ShowSearchHitHook;
+use MediaWiki\Specials\SpecialSearch;
 use SearchResult;
-use SpecialSearch;
 use Wikibase\Lib\WikibaseSettings;
 use Wikibase\Search\Elastic\EntitySearchElastic;
 

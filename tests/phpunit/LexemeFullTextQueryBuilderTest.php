@@ -6,6 +6,7 @@ use CirrusSearch\CirrusDebugOptions;
 use CirrusSearch\CirrusSearch;
 use CirrusSearch\CirrusTestCase;
 use CirrusSearch\SearchConfig;
+use MediaWiki\Config\ConfigException;
 use MediaWikiIntegrationTestCase;
 use Wikibase\Lexeme\Search\Elastic\LexemeFullTextQueryBuilder;
 use Wikibase\Lexeme\Tests\MediaWiki\LexemeDescriptionTestCase;
@@ -45,7 +46,7 @@ class LexemeFullTextQueryBuilderTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider searchDataProvider
 	 * @param string $searchString
 	 * @param string $expected
-	 * @throws \ConfigException
+	 * @throws ConfigException
 	 */
 	public function testSearchElastic( $searchString, $expected ) {
 		$this->setMwGlobals( [

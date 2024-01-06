@@ -2,9 +2,9 @@
 namespace Wikibase\Lexeme\Search\Elastic;
 
 use CirrusSearch\Search\Result;
-use Html;
 use HtmlArmor;
 use Language;
+use MediaWiki\Html\Html;
 use Wikibase\Lexeme\DataAccess\LexemeDescription;
 
 /**
