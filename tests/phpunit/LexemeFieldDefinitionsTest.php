@@ -60,7 +60,7 @@ class LexemeFieldDefinitionsTest extends TestCase {
 
 		$settings = new SettingsArray( require __DIR__ . '/../../../Wikibase/repo/config/Wikibase.default.php' );
 		/** @var $lexemeFields LexemeFieldDefinitions */
-		$lexemeFields = $typeDefs->get( EntityTypeDefinitions::SEARCH_FIELD_DEFINITIONS )['lexeme']( [ 'en' ,'fr' ],
+		$lexemeFields = $typeDefs->get( EntityTypeDefinitions::SEARCH_FIELD_DEFINITIONS )['lexeme']( [ 'en', 'fr' ],
 			$settings );
 		self::assertArrayHasKey( 'statement_count', $lexemeFields->getFields() );
 	}

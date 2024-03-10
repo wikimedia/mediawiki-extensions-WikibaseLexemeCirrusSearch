@@ -45,7 +45,6 @@ class LexemeLanguageFieldTest extends LexemeFieldTestBase {
 	 * @return array
 	 */
 	public function getTestData() {
-
 		$propId = new NumericPropertyId( 'P42' );
 
 		return [

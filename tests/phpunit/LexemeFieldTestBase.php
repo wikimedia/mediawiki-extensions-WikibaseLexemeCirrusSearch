@@ -25,7 +25,6 @@ abstract class LexemeFieldTestBase extends TestCase {
 	 * @dataProvider getTestData
 	 */
 	public function testLemmaField( $field, $expected ) {
-
 		$form1 = NewForm::havingId( 'F1' )
 			->andRepresentation( 'en', 'Color' )
 			->andRepresentation( 'en-gb', 'colour' )

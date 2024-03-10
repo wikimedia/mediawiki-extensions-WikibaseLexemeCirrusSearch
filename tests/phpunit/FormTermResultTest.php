@@ -376,7 +376,7 @@ class FormTermResultTest extends TestCase {
 			$this->assertCount( 0, $converted );
 			return;
 		}
-		$this->assertCount( count( $expected ), $converted );
+		$this->assertSameSize( $expected, $converted );
 		foreach ( $converted as $idx => $item ) {
 			$this->assertArrayHasKey( $idx, $expected );
 			$expectedEntry = $expected[$idx];

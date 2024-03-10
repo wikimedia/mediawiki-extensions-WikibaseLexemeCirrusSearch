@@ -126,7 +126,6 @@ class Hooks implements ShowSearchHitHook {
 		$terms, &$link, &$redirect, &$section, &$extract, &$score, &$size, &$date, &$related,
 		&$html
 	) {
-
 		if ( empty( $GLOBALS['wgLexemeUseCirrus'] ) ) {
 			return;
 		}
