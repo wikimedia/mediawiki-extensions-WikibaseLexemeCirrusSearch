@@ -228,8 +228,9 @@ class LexemeFulltextResult extends BaseResultsType {
 			// Highlight part contains information about what has actually been matched.
 			$highlight = $r->getHighlights();
 
-			$lang = $sourceData['lexeme_language']['entity'];
-			$category = $sourceData['lexical_category'];
+			// we accept missing lemma fields (see T365692)
+			$lang = $sourceData['lexeme_language']['entity'] ?? '';
+			$category = $sourceData['lexical_category'] ?? '';
 
 			$features = [];
 			$lexemeData = [
