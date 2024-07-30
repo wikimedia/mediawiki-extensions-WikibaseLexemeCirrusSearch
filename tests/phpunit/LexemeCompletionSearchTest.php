@@ -18,7 +18,7 @@ class LexemeCompletionSearchTest extends \MediaWikiIntegrationTestCase {
 
 	public function setUp(): void {
 		parent::setUp();
-		$this->setMwGlobals( 'wgLexemeUseCirrus', true );
+		$this->overrideConfigValue( 'LexemeUseCirrus', true );
 	}
 
 	/**

@@ -26,7 +26,7 @@ class LexemeFullTextQueryBuilderTest extends MediaWikiIntegrationTestCase {
 
 	public function setUp(): void {
 		parent::setUp();
-		$this->setMwGlobals( 'wgLexemeUseCirrus', true );
+		$this->overrideConfigValue( 'LexemeUseCirrus', true );
 	}
 
 	public static function searchDataProvider() {
@@ -49,8 +49,8 @@ class LexemeFullTextQueryBuilderTest extends MediaWikiIntegrationTestCase {
 	 * @throws ConfigException
 	 */
 	public function testSearchElastic( $searchString, $expected ) {
-		$this->setMwGlobals( [
-			'wgLexemeFulltextRescoreProfile' => 'lexeme_fulltext',
+		$this->overrideConfigValues( [
+			'LexemeFulltextRescoreProfile' => 'lexeme_fulltext',
 		] );
 
 		$config = new SearchConfig();
