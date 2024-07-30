@@ -3,8 +3,7 @@ namespace Wikibase\Lexeme\Search\Elastic\Tests;
 
 use Elastica\Result;
 use Elastica\ResultSet;
-use MediaWiki\MediaWikiServices;
-use PHPUnit\Framework\TestCase;
+use MediaWikiIntegrationTestCase;
 use Wikibase\Lexeme\Search\Elastic\FormTermResult;
 use Wikibase\Lexeme\Tests\MediaWiki\LexemeDescriptionTestCase;
 
@@ -13,7 +12,7 @@ use Wikibase\Lexeme\Tests\MediaWiki\LexemeDescriptionTestCase;
 /**
  * @covers \Wikibase\Lexeme\Search\Elastic\FormTermResult
  */
-class FormTermResultTest extends TestCase {
+class FormTermResultTest extends MediaWikiIntegrationTestCase {
 	use LexemeDescriptionTestCase;
 
 	private $labels = [
@@ -360,7 +359,7 @@ class FormTermResultTest extends TestCase {
 
 		$res = new FormTermResult(
 			$this->getIdParser(),
-			MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( $displayLanguage ),
+			$this->getServiceContainer()->getLanguageFactory()->getLanguage( $displayLanguage ),
 			$termLookupFactory,
 			2
 		);
