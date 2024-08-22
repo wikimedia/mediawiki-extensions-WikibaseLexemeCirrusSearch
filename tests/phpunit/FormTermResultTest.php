@@ -15,6 +15,7 @@ use Wikibase\Lexeme\Tests\MediaWiki\LexemeDescriptionTestCase;
 class FormTermResultTest extends MediaWikiIntegrationTestCase {
 	use LexemeDescriptionTestCase;
 
+	/** @var array */
 	private $labels = [
 		'Q1' => [
 			'en' => 'English',

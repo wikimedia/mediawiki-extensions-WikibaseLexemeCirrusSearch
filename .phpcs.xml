@@ -3,9 +3,7 @@
 	<!-- This rule set includes all rules from the MediaWiki rule set, see
 		https://github.com/wikimedia/mediawiki-tools-codesniffer/blob/master/MediaWiki/ruleset.xml
 		-->
-	<rule ref="./vendor/mediawiki/mediawiki-codesniffer/MediaWiki">
-		<exclude name="MediaWiki.Commenting.PropertyDocumentation.MissingDocumentationPrivate" />
-	</rule>
+	<rule ref="./vendor/mediawiki/mediawiki-codesniffer/MediaWiki" />
 
 	<!-- The function comment sniff is way to rigorous about way to many details that need
 		exceptions:
