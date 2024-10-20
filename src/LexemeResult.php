@@ -3,8 +3,8 @@ namespace Wikibase\Lexeme\Search\Elastic;
 
 use CirrusSearch\Search\Result;
 use HtmlArmor;
-use Language;
 use MediaWiki\Html\Html;
+use MediaWiki\Language\Language;
 use Wikibase\Lexeme\DataAccess\LexemeDescription;
 
 /**

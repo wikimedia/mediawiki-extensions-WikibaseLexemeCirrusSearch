@@ -4,7 +4,7 @@ namespace Wikibase\Lexeme\Search\Elastic;
 use CirrusSearch\Search\BaseCirrusSearchResultSet;
 use Elastica\Result;
 use Elastica\ResultSet as ElasticaResultSet;
-use Language;
+use MediaWiki\Language\Language;
 use Wikibase\Lexeme\DataAccess\LexemeDescription;
 
 /**

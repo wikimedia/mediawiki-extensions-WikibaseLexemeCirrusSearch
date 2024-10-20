@@ -8,7 +8,7 @@ use Elastica\Query\BoolQuery;
 use Elastica\Query\DisMax;
 use Elastica\Query\MatchQuery;
 use Elastica\Query\Term;
-use Language;
+use MediaWiki\Language\Language;
 use Wikibase\DataModel\Entity\EntityIdParser;
 use Wikibase\Lib\Store\FallbackLabelDescriptionLookupFactory;
 use Wikibase\Repo\WikibaseRepo;

@@ -10,7 +10,7 @@ use Elastica\Query\DisMax;
 use Elastica\Query\MatchNone;
 use Elastica\Query\MatchQuery;
 use Elastica\Query\Term;
-use Language;
+use MediaWiki\Language\Language;
 use MediaWiki\Request\WebRequest;
 use Wikibase\DataModel\Entity\EntityIdParser;
 use Wikibase\Lexeme\MediaWiki\Content\LexemeContent;

@@ -4,7 +4,7 @@ namespace Wikibase\Lexeme\Search\Elastic\Tests;
 
 use CirrusSearch\CirrusDebugOptions;
 use CirrusSearch\CirrusTestCase;
-use Language;
+use MediaWiki\Language\Language;
 use MediaWiki\Request\FauxRequest;
 use Wikibase\DataModel\Entity\BasicEntityIdParser;
 use Wikibase\Lexeme\Search\Elastic\FormSearchEntity;
