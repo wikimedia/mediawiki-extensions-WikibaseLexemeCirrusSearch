@@ -59,7 +59,7 @@ class LexemeSearchEntity implements EntitySearchHelper {
 		WebRequest $request,
 		Language $userLanguage,
 		FallbackLabelDescriptionLookupFactory $lookupFactory,
-		CirrusDebugOptions $options = null
+		?CirrusDebugOptions $options = null
 	) {
 		$this->idParser = $idParser;
 		$this->request = $request;
