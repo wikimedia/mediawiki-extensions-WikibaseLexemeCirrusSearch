@@ -31,7 +31,9 @@ return [
 						WikibaseRepo::getPropertyDataTypeLookup( $services ) ),
 					WikibaseRepo::getDataTypeDefinitions( $services )
 						->getSearchIndexDataFormatterCallbacks(),
-					$searchSettings
+					$searchSettings,
+					WikibaseRepo::getLogger( $services ),
+					[ LexemeFieldDefinitions::class, 'getSearchStatements' ]
 				),
 				WikibaseRepo::getEntityLookup( $services ),
 				$lcID

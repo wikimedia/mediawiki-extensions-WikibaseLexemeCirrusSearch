@@ -4,6 +4,8 @@ namespace Wikibase\Lexeme\Search\Elastic;
 
 use Wikibase\DataModel\Entity\NumericPropertyId;
 use Wikibase\DataModel\Services\Lookup\EntityLookup;
+use Wikibase\DataModel\Statement\Statement;
+use Wikibase\Lexeme\Domain\Model\Lexeme;
 use Wikibase\Repo\Search\Fields\FieldDefinitions;
 use Wikibase\Repo\Search\Fields\WikibaseIndexField;
 
@@ -49,4 +51,22 @@ class LexemeFieldDefinitions implements FieldDefinitions {
 		return $fields;
 	}
 
+	/**
+	 * @param Lexeme $entity Entity to source statements from
+	 * @return Statement[] Set of statements to consider indexing
+	 */
+	public static function getSearchStatements( Lexeme $entity ) {
+		$statements = $entity->getStatements()->toArray();
+		foreach ( $entity->getForms()->toArray() as $form ) {
+			foreach ( $form->getStatements() as $statement ) {
+				$statements[] = $statement;
+			}
+		}
+		foreach ( $entity->getSenses()->toArray() as $sense ) {
+			foreach ( $sense->getStatements() as $statement ) {
+				$statements[] = $statement;
+			}
+		}
+		return $statements;
+	}
 }
