@@ -27,6 +27,7 @@ return [
 			}
 			return new LexemeFieldDefinitions(
 				StatementProviderFieldDefinitions::newFromSettings(
+					WikibaseRepo::getDataTypeFactory( $services ),
 					new InProcessCachingDataTypeLookup(
 						WikibaseRepo::getPropertyDataTypeLookup( $services ) ),
 					WikibaseRepo::getDataTypeDefinitions( $services )
