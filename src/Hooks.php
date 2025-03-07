@@ -24,7 +24,7 @@ class Hooks implements ShowSearchHitHook {
 	 * @see WikibaseLexeme.entitytypes.php
 	 * @see WikibaseLexeme.entitytypes.repo.php
 	 *
-	 * @param array[] $entityTypeDefinitions
+	 * @param array[] &$entityTypeDefinitions
 	 */
 	public static function onWikibaseRepoEntityTypes( array &$entityTypeDefinitions ) {
 		if ( empty( $GLOBALS['wgLexemeUseCirrus'] ) ) {
@@ -111,16 +111,16 @@ class Hooks implements ShowSearchHitHook {
 	/**
 	 * @param SpecialSearch $searchPage
 	 * @param SearchResult $result
-	 * @param array $terms
-	 * @param $link
-	 * @param $redirect
-	 * @param $section
-	 * @param $extract
-	 * @param $score
-	 * @param $size
-	 * @param $date
-	 * @param $related
-	 * @param $html
+	 * @param string[] $terms
+	 * @param string &$link
+	 * @param string &$redirect
+	 * @param string &$section
+	 * @param string &$extract
+	 * @param string &$score
+	 * @param string &$size
+	 * @param string &$date
+	 * @param string &$related
+	 * @param string &$html
 	 */
 	public function onShowSearchHit( $searchPage, $result,
 		$terms, &$link, &$redirect, &$section, &$extract, &$score, &$size, &$date, &$related,

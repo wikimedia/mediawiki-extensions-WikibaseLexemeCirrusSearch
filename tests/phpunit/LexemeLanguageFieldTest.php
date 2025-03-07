@@ -18,6 +18,8 @@ use Wikibase\Lexeme\Search\Elastic\LexemeLanguageField;
 class LexemeLanguageFieldTest extends LexemeFieldTestBase {
 
 	/**
+	 * @param NumericPropertyId $propId
+	 * @param string $code
 	 * @return StatementList
 	 */
 	private function getStatList( NumericPropertyId $propId, $code ) {
