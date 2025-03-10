@@ -47,6 +47,7 @@ class LexemeFieldDefinitions implements FieldDefinitions {
 		$fields[FormsField::NAME] = new FormsField();
 		$fields[LexemeLanguageField::NAME] = new LexemeLanguageField( $this->entityLookup,
 			$this->lexemeLanguageCodePropertyId );
+		$fields[LemmaSpellingVariantsField::NAME] = new LemmaSpellingVariantsField();
 		$fields[LexemeCategoryField::NAME] = new LexemeCategoryField();
 		return $fields;
 	}

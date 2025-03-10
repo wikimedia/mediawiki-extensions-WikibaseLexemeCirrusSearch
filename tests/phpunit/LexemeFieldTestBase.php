@@ -38,6 +38,7 @@ abstract class LexemeFieldTestBase extends TestCase {
 			->withId( 'L1' )
 			->withLanguage( self::LANGUAGE_ID )
 			->withLemma( 'en', 'Test Lemma' )
+			->withLemma( 'en-gb', 'Test lemma' )
 			->withForm( $form1 )
 			->withForm( $form2 )
 			->withLexicalCategory( self::CATEGORY_ID )
