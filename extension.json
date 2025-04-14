@@ -43,17 +43,22 @@
 		}
 	},
 	"Hooks": {
-		"CirrusSearchProfileService": [
-			"Wikibase\\Lexeme\\Search\\Elastic\\Hooks::onCirrusSearchProfileService"
-		],
-		"ShowSearchHit": "main",
-		"WikibaseRepoEntityTypes": [
-			"Wikibase\\Lexeme\\Search\\Elastic\\Hooks::onWikibaseRepoEntityTypes"
-		]
+		"CirrusSearchProfileService": "CirrusSearchProfileService",
+		"ShowSearchHit": "ShowSearchHit",
+		"WikibaseRepoEntityTypes": "WikibaseRepoEntityTypes"
 	},
 	"HookHandlers": {
-		"main": {
-			"class": "Wikibase\\Lexeme\\Search\\Elastic\\Hooks"
+		"CirrusSearchProfileService": {
+			"class": "Wikibase\\Lexeme\\Search\\Elastic\\Hooks\\CirrusSearchProfileServiceHookHandler",
+			"services": [
+				"MainConfig"
+			]
+		},
+		"ShowSearchHit": {
+			"class": "Wikibase\\Lexeme\\Search\\Elastic\\Hooks\\ShowSearchHitHookHandler"
+		},
+		"WikibaseRepoEntityTypes": {
+			"class": "Wikibase\\Lexeme\\Search\\Elastic\\Hooks\\WikibaseRepoEntityTypesHookHandler"
 		}
 	},
 	"MessagesDirs": {
