@@ -1,39 +1,29 @@
 <?php
 
-namespace Wikibase\Lexeme\Search\Elastic;
+declare( strict_types = 1 );
 
+namespace Wikibase\Lexeme\Search\Elastic\Hooks;
+
+use CirrusSearch\Hooks\CirrusSearchProfileServiceHook;
 use CirrusSearch\Profile\ConfigProfileRepository;
 use CirrusSearch\Profile\SearchProfileService;
-use MediaWiki\MediaWikiServices;
-use MediaWiki\Search\Hook\ShowSearchHitHook;
-use MediaWiki\Specials\SpecialSearch;
-use SearchResult;
+use MediaWiki\Config\Config;
+use Wikibase\Lexeme\Search\Elastic\LexemeFullTextQueryBuilder;
+use Wikibase\Lexeme\Search\Elastic\LexemeSearchEntity;
 use Wikibase\Lib\WikibaseSettings;
 use Wikibase\Search\Elastic\EntitySearchElastic;
 
 /**
- * MediaWiki hook handlers for the WikibaseLexemeCirrusSearch extension.
+ * Handler for the CirrusSearchProfileServiceHook.
  *
  * @license GPL-2.0-or-later
  */
-class Hooks implements ShowSearchHitHook {
+class CirrusSearchProfileServiceHookHandler implements CirrusSearchProfileServiceHook {
 
-	/**
-	 * Adds the definition of the lexeme entity type to the definitions array Wikibase uses.
-	 *
-	 * @see WikibaseLexeme.entitytypes.php
-	 * @see WikibaseLexeme.entitytypes.repo.php
-	 *
-	 * @param array[] &$entityTypeDefinitions
-	 */
-	public static function onWikibaseRepoEntityTypes( array &$entityTypeDefinitions ) {
-		if ( empty( $GLOBALS['wgLexemeUseCirrus'] ) ) {
-			return;
-		}
-		$entityTypeDefinitions = wfArrayPlus2d(
-			require __DIR__ . '/../WikibaseSearch.entitytypes.repo.php',
-			$entityTypeDefinitions
-		);
+	private Config $config;
+
+	public function __construct( Config $config ) {
+		$this->config = $config;
 	}
 
 	/**
@@ -41,33 +31,31 @@ class Hooks implements ShowSearchHitHook {
 	 *
 	 * @param SearchProfileService $service
 	 */
-	public static function onCirrusSearchProfileService( SearchProfileService $service ) {
-		$config = MediaWikiServices::getInstance()->getMainConfig();
-
+	public function onCirrusSearchProfileService( SearchProfileService $service ): void {
 		// Do not add Lexeme specific search stuff if we are not a repo
-		if ( !WikibaseSettings::isRepoEnabled() || !$config->get( 'LexemeEnableRepo' ) ) {
+		if ( !WikibaseSettings::isRepoEnabled() || !$this->config->get( 'LexemeEnableRepo' ) ) {
 			return;
 		}
 
 		// register base profiles available on all wikibase installs
 		$service->registerFileRepository( EntitySearchElastic::WIKIBASE_PREFIX_QUERY_BUILDER,
-			'lexeme_base', __DIR__ . '/../config/LexemePrefixSearchProfiles.php' );
+			'lexeme_base', __DIR__ . '/../../config/LexemePrefixSearchProfiles.php' );
 		$service->registerFileRepository( SearchProfileService::RESCORE_FUNCTION_CHAINS,
-			'lexeme_base', __DIR__ . '/../config/LexemeRescoreFunctions.php' );
+			'lexeme_base', __DIR__ . '/../../config/LexemeRescoreFunctions.php' );
 		$service->registerFileRepository( SearchProfileService::RESCORE,
-			'lexeme_base', __DIR__ . '/../config/LexemeRescoreProfiles.php' );
+			'lexeme_base', __DIR__ . '/../../config/LexemeRescoreProfiles.php' );
 		$service->registerFileRepository( SearchProfileService::FT_QUERY_BUILDER,
-			'lexeme_base', __DIR__ . '/../config/LexemeSearchProfiles.php' );
+			'lexeme_base', __DIR__ . '/../../config/LexemeSearchProfiles.php' );
 
 		// register custom profiles provided in the WikibaseLexeme config settings
 		$service->registerRepository(
 			new ConfigProfileRepository( EntitySearchElastic::WIKIBASE_PREFIX_QUERY_BUILDER,
-				'lexeme_config', 'LexemePrefixSearchProfiles', $config )
+				'lexeme_config', 'LexemePrefixSearchProfiles', $this->config )
 		);
 		// Rescore functions for lexemes
 		$service->registerRepository(
 			new ConfigProfileRepository( SearchProfileService::RESCORE_FUNCTION_CHAINS,
-				'lexeme_config', 'LexemeRescoreFunctions', $config )
+				'lexeme_config', 'LexemeRescoreFunctions', $this->config )
 		);
 
 		// Determine the default rescore profile to use for entity autocomplete search
@@ -75,7 +63,7 @@ class Hooks implements ShowSearchHitHook {
 			LexemeSearchEntity::CONTEXT_LEXEME_PREFIX,
 			EntitySearchElastic::DEFAULT_RESCORE_PROFILE );
 		$service->registerConfigOverride( SearchProfileService::RESCORE,
-			LexemeSearchEntity::CONTEXT_LEXEME_PREFIX, $config, 'LexemePrefixRescoreProfile' );
+			LexemeSearchEntity::CONTEXT_LEXEME_PREFIX, $this->config, 'LexemePrefixRescoreProfile' );
 		// add the possibility to override the profile by setting the URI param cirrusRescoreProfile
 		$service->registerUriParamOverride( SearchProfileService::RESCORE,
 			LexemeSearchEntity::CONTEXT_LEXEME_PREFIX, 'cirrusRescoreProfile' );
@@ -85,7 +73,7 @@ class Hooks implements ShowSearchHitHook {
 			LexemeSearchEntity::CONTEXT_LEXEME_PREFIX,
 			EntitySearchElastic::DEFAULT_QUERY_BUILDER_PROFILE );
 		$service->registerConfigOverride( EntitySearchElastic::WIKIBASE_PREFIX_QUERY_BUILDER,
-			LexemeSearchEntity::CONTEXT_LEXEME_PREFIX, $config, 'LexemePrefixSearchProfile' );
+			LexemeSearchEntity::CONTEXT_LEXEME_PREFIX, $this->config, 'LexemePrefixSearchProfile' );
 		$service->registerUriParamOverride( EntitySearchElastic::WIKIBASE_PREFIX_QUERY_BUILDER,
 			LexemeSearchEntity::CONTEXT_LEXEME_PREFIX, 'cirrusWBProfile' );
 
@@ -101,44 +89,11 @@ class Hooks implements ShowSearchHitHook {
 			LexemeFullTextQueryBuilder::CONTEXT_LEXEME_FULLTEXT,
 			LexemeFullTextQueryBuilder::LEXEME_DEFAULT_PROFILE );
 		$service->registerConfigOverride( SearchProfileService::RESCORE,
-			LexemeFullTextQueryBuilder::CONTEXT_LEXEME_FULLTEXT, $config,
+			LexemeFullTextQueryBuilder::CONTEXT_LEXEME_FULLTEXT, $this->config,
 			'LexemeFulltextRescoreProfile' );
 		// add the possibility to override the profile by setting the URI param cirrusRescoreProfile
 		$service->registerUriParamOverride( SearchProfileService::RESCORE,
 			LexemeFullTextQueryBuilder::CONTEXT_LEXEME_FULLTEXT, 'cirrusRescoreProfile' );
-	}
-
-	/**
-	 * @param SpecialSearch $searchPage
-	 * @param SearchResult $result
-	 * @param string[] $terms
-	 * @param string &$link
-	 * @param string &$redirect
-	 * @param string &$section
-	 * @param string &$extract
-	 * @param string &$score
-	 * @param string &$size
-	 * @param string &$date
-	 * @param string &$related
-	 * @param string &$html
-	 */
-	public function onShowSearchHit( $searchPage, $result,
-		$terms, &$link, &$redirect, &$section, &$extract, &$score, &$size, &$date, &$related,
-		&$html
-	) {
-		if ( empty( $GLOBALS['wgLexemeUseCirrus'] ) ) {
-			return;
-		}
-		if ( !( $result instanceof LexemeResult ) ) {
-			return;
-		}
-
-		// set $size to size metrics
-		$size = $searchPage->msg(
-			'wikibaselexeme-search-result-stats',
-			$result->getStatementCount(),
-			$result->getFormCount()
-		)->escaped();
 	}
 
 }
