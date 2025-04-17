@@ -2,12 +2,12 @@
 
 namespace Wikibase\Lexeme\Search\Elastic\Tests;
 
-use Wikibase\Lexeme\Search\Elastic\LemmaField;
+use Wikibase\Lexeme\Search\Elastic\LemmaSpellingVariantsField;
 
 /**
  * @covers \Wikibase\Lexeme\Search\Elastic\LemmaField
  */
-class LemmaFieldTest extends LexemeFieldTestBase {
+class LemmaSpellingVariantsFieldTest extends LexemeFieldTestBase {
 
 	/**
 	 * @return array
@@ -15,8 +15,8 @@ class LemmaFieldTest extends LexemeFieldTestBase {
 	public function getTestData() {
 		return [
 			[
-				new LemmaField(),
-				[ "Test Lemma", "Test lemma" ]
+				new LemmaSpellingVariantsField(),
+				[ "en", "en-gb" ]
 			]
 		];
 	}
