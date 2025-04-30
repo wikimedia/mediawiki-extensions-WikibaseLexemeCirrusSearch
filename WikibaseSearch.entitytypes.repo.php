@@ -45,19 +45,22 @@ return [
 		Def::ENTITY_SEARCH_CALLBACK => static function ( WebRequest $request ) {
 			$fallbackTermLookupFactory = WikibaseRepo::getFallbackLabelDescriptionLookupFactory();
 			$entityIdParser = WikibaseRepo::getEntityIdParser();
+			$context = new RequestContext();
+			$context->setRequest( $request );
+			$language = $context->getLanguage();
 
 			return new CombinedEntitySearchHelper(
 				[
 					new EntityIdSearchHelper(
 						WikibaseRepo::getEntityLookup(),
 						$entityIdParser,
-						$fallbackTermLookupFactory->newLabelDescriptionLookup( WikibaseRepo::getUserLanguage() ),
+						$fallbackTermLookupFactory->newLabelDescriptionLookup( $language ),
 						WikibaseRepo::getEnabledEntityTypes()
 					),
 					new LexemeSearchEntity(
 						$entityIdParser,
 						$request,
-						WikibaseRepo::getUserLanguage(),
+						$language,
 						$fallbackTermLookupFactory
 					)
 				]
@@ -68,6 +71,8 @@ return [
 	'form' => [
 		Def::ENTITY_SEARCH_CALLBACK => static function ( WebRequest $request ) {
 			$entityIdParser = WikibaseRepo::getEntityIdParser();
+			$context = new RequestContext();
+			$context->setRequest( $request );
 
 			return new CombinedEntitySearchHelper(
 				[
@@ -80,7 +85,7 @@ return [
 					new FormSearchEntity(
 						$entityIdParser,
 						$request,
-						WikibaseRepo::getUserLanguage(),
+						$context->getLanguage(),
 						WikibaseRepo::getFallbackLabelDescriptionLookupFactory()
 					),
 				]
