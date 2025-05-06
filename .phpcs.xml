@@ -3,7 +3,9 @@
 	<!-- This rule set includes all rules from the MediaWiki rule set, see
 		https://github.com/wikimedia/mediawiki-tools-codesniffer/blob/master/MediaWiki/ruleset.xml
 		-->
-	<rule ref="./vendor/mediawiki/mediawiki-codesniffer/MediaWiki" />
+	<rule ref="./vendor/mediawiki/mediawiki-codesniffer/MediaWiki">
+		<exclude name="MediaWiki.Commenting.PhpunitAnnotations.WrongDataProviderName" />
+	</rule>
 
 	<!-- We disagree with the idea of certain characters making comments "illegal" and blocking
 		patches from being merged. This behaves especially bad on code examples. -->
