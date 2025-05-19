@@ -12,7 +12,7 @@ class LemmaSpellingVariantsFieldTest extends LexemeFieldTestBase {
 	/**
 	 * @return array
 	 */
-	public function getTestData() {
+	public static function provideTestData() {
 		return [
 			[
 				new LemmaSpellingVariantsField(),
