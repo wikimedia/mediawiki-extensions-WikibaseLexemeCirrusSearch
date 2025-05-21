@@ -17,12 +17,12 @@ abstract class LexemeFieldTestBase extends TestCase {
 	/**
 	 * @return array
 	 */
-	abstract protected function getTestData();
+	abstract protected static function provideTestData();
 
 	/**
 	 * @param WikibaseIndexField $field
 	 * @param mixed $expected
-	 * @dataProvider getTestData
+	 * @dataProvider provideTestData
 	 */
 	public function testLemmaField( $field, $expected ) {
 		$form1 = NewForm::havingId( 'F1' )
