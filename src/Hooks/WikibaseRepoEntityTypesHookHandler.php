@@ -25,10 +25,10 @@ class WikibaseRepoEntityTypesHookHandler implements WikibaseRepoEntityTypesHook 
 		if ( empty( $GLOBALS['wgLexemeUseCirrus'] ) ) {
 			return;
 		}
-		$entityTypeDefinitions = wfArrayPlus2d(
-			require __DIR__ . '/../../WikibaseSearch.entitytypes.repo.php',
-			$entityTypeDefinitions
-		);
+		$searchDefinitions = require __DIR__ . '/../../WikibaseSearch.entitytypes.repo.php';
+		foreach ( $searchDefinitions as $type => $definition ) {
+			$entityTypeDefinitions[$type] = $definition + ( $entityTypeDefinitions[$type] ?? [] );
+		}
 	}
 
 }
