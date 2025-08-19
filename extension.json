@@ -44,6 +44,7 @@
 	},
 	"Hooks": {
 		"CirrusSearchProfileService": "CirrusSearchProfileService",
+		"CirrusSearchAddQueryFeatures": "CirrusSearchAddQueryFeatures",
 		"ShowSearchHit": "ShowSearchHit",
 		"WikibaseRepoEntityTypes": "WikibaseRepoEntityTypes"
 	},
@@ -53,6 +54,9 @@
 			"services": [
 				"MainConfig"
 			]
+		},
+		"CirrusSearchAddQueryFeatures": {
+			"class": "Wikibase\\Lexeme\\Search\\Elastic\\Hooks\\CirrusSearchAddQueryFeaturesHookHandler"
 		},
 		"ShowSearchHit": {
 			"class": "Wikibase\\Lexeme\\Search\\Elastic\\Hooks\\ShowSearchHitHookHandler"
