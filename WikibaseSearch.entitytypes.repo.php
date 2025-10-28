@@ -51,18 +51,18 @@ return [
 
 			return new CombinedEntitySearchHelper(
 				[
+					new LexemeSearchEntity(
+						$entityIdParser,
+						$request,
+						$language,
+						$fallbackTermLookupFactory
+					),
 					new EntityIdSearchHelper(
 						WikibaseRepo::getEntityLookup(),
 						$entityIdParser,
 						$fallbackTermLookupFactory->newLabelDescriptionLookup( $language ),
 						WikibaseRepo::getEnabledEntityTypes()
 					),
-					new LexemeSearchEntity(
-						$entityIdParser,
-						$request,
-						$language,
-						$fallbackTermLookupFactory
-					)
 				]
 			);
 		},
@@ -76,17 +76,17 @@ return [
 
 			return new CombinedEntitySearchHelper(
 				[
-					new Wikibase\Repo\Api\EntityIdSearchHelper(
-						WikibaseRepo::getEntityLookup(),
-						$entityIdParser,
-						new NullLabelDescriptionLookup(),
-						WikibaseRepo::getEnabledEntityTypes()
-					),
 					new FormSearchEntity(
 						$entityIdParser,
 						$request,
 						$context->getLanguage(),
 						WikibaseRepo::getFallbackLabelDescriptionLookupFactory()
+					),
+					new Wikibase\Repo\Api\EntityIdSearchHelper(
+						WikibaseRepo::getEntityLookup(),
+						$entityIdParser,
+						new NullLabelDescriptionLookup(),
+						WikibaseRepo::getEnabledEntityTypes()
 					),
 				]
 			);
