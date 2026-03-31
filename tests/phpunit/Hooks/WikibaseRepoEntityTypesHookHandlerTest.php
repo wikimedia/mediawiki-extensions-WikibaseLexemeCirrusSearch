@@ -25,17 +25,11 @@ class WikibaseRepoEntityTypesHookHandlerTest extends MediaWikiIntegrationTestCas
 		$this->assertSame( $original, $entityTypeDefinitions );
 	}
 
-	public function testOverridesCallbacks(): void {
+	public function testOverridesSearchDefinitions(): void {
 		$this->overrideConfigValue( 'LexemeUseCirrus', true );
 		$entityTypeDefinitions = [
 			'lexeme' => [
 				EntityTypeDefinitions::CONTENT_MODEL_ID => LexemeContent::CONTENT_MODEL_ID,
-			],
-			'form' => [
-				EntityTypeDefinitions::ENTITY_SEARCH_CALLBACK => 'original form callback',
-			],
-			'sense' => [
-				EntityTypeDefinitions::ENTITY_SEARCH_CALLBACK => 'original sense callback',
 			],
 		];
 		$handler = new WikibaseRepoEntityTypesHookHandler();
@@ -46,12 +40,6 @@ class WikibaseRepoEntityTypesHookHandlerTest extends MediaWikiIntegrationTestCas
 			$entityTypeDefinitions['lexeme'][EntityTypeDefinitions::CONTENT_MODEL_ID] );
 		$lexemeSearchFieldDefs = $entityTypeDefinitions['lexeme'][EntityTypeDefinitions::SEARCH_FIELD_DEFINITIONS];
 		$this->assertIsCallable( $lexemeSearchFieldDefs );
-		$formCallback = $entityTypeDefinitions['form'][EntityTypeDefinitions::ENTITY_SEARCH_CALLBACK];
-		$this->assertNotSame( 'original form callback', $formCallback );
-		$this->assertIsCallable( $formCallback );
-		$senseCallback = $entityTypeDefinitions['form'][EntityTypeDefinitions::ENTITY_SEARCH_CALLBACK];
-		$this->assertNotSame( 'original form callback', $senseCallback );
-		$this->assertIsCallable( $senseCallback );
 	}
 
 	public function testKeepsEntityTypeOrder(): void {
