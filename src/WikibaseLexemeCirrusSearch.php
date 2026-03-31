@@ -11,6 +11,11 @@ use Wikibase\Repo\Api\EntitySearchHelper;
  */
 class WikibaseLexemeCirrusSearch {
 
+	public static function getFormSearchHelper( ?ContainerInterface $services = null ): EntitySearchHelper {
+		return ( $services ?: MediaWikiServices::getInstance() )
+			->get( 'WikibaseLexemeCirrusSearch.FormSearchHelper' );
+	}
+
 	public static function getLexemeSearchHelper( ?ContainerInterface $services = null ): EntitySearchHelper {
 		return ( $services ?: MediaWikiServices::getInstance() )
 			->get( 'WikibaseLexemeCirrusSearch.LexemeSearchHelper' );

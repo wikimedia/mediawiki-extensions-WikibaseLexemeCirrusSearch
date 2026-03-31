@@ -1,16 +1,13 @@
 <?php
 
-use MediaWiki\Context\RequestContext;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\WebRequest;
 use Wikibase\DataModel\Services\Lookup\InProcessCachingDataTypeLookup;
-use Wikibase\Lexeme\DataAccess\Store\NullLabelDescriptionLookup;
-use Wikibase\Lexeme\Search\Elastic\FormSearchEntity;
 use Wikibase\Lexeme\Search\Elastic\LexemeFieldDefinitions;
 use Wikibase\Lexeme\Search\Elastic\LexemeFullTextQueryBuilder;
+use Wikibase\Lexeme\Search\Elastic\WikibaseLexemeCirrusSearch;
 use Wikibase\Lib\EntityTypeDefinitions as Def;
 use Wikibase\Lib\SettingsArray;
-use Wikibase\Repo\Api\CombinedEntitySearchHelper;
 use Wikibase\Repo\WikibaseRepo;
 use Wikibase\Search\Elastic\Fields\StatementProviderFieldDefinitions;
 
@@ -45,26 +42,7 @@ return [
 	],
 	'form' => [
 		Def::ENTITY_SEARCH_CALLBACK => static function ( WebRequest $request ) {
-			$entityIdParser = WikibaseRepo::getEntityIdParser();
-			$context = new RequestContext();
-			$context->setRequest( $request );
-
-			return new CombinedEntitySearchHelper(
-				[
-					new FormSearchEntity(
-						$entityIdParser,
-						$request,
-						$context->getLanguage(),
-						WikibaseRepo::getFallbackLabelDescriptionLookupFactory()
-					),
-					new Wikibase\Repo\Api\EntityIdSearchHelper(
-						WikibaseRepo::getEntityLookup(),
-						$entityIdParser,
-						new NullLabelDescriptionLookup(),
-						WikibaseRepo::getEnabledEntityTypes()
-					),
-				]
-			);
+			return WikibaseLexemeCirrusSearch::getFormSearchHelper();
 		},
 	],
 	// TODO: support senses?
