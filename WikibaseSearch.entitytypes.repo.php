@@ -8,7 +8,6 @@ use Wikibase\Lexeme\DataAccess\Store\NullLabelDescriptionLookup;
 use Wikibase\Lexeme\Search\Elastic\FormSearchEntity;
 use Wikibase\Lexeme\Search\Elastic\LexemeFieldDefinitions;
 use Wikibase\Lexeme\Search\Elastic\LexemeFullTextQueryBuilder;
-use Wikibase\Lexeme\Search\Elastic\WikibaseLexemeCirrusSearch;
 use Wikibase\Lib\EntityTypeDefinitions as Def;
 use Wikibase\Lib\SettingsArray;
 use Wikibase\Repo\Api\CombinedEntitySearchHelper;
@@ -41,9 +40,6 @@ return [
 					? WikibaseRepo::getEntityIdParser( $services )->parse( $lcID )
 					: null
 			);
-		},
-		Def::ENTITY_SEARCH_CALLBACK => static function ( WebRequest $request ) {
-			return WikibaseLexemeCirrusSearch::getLexemeSearchHelper();
 		},
 		Def::FULLTEXT_SEARCH_CONTEXT => LexemeFullTextQueryBuilder::CONTEXT_LEXEME_FULLTEXT,
 	],

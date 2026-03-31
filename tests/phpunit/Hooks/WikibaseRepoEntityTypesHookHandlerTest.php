@@ -30,7 +30,6 @@ class WikibaseRepoEntityTypesHookHandlerTest extends MediaWikiIntegrationTestCas
 		$entityTypeDefinitions = [
 			'lexeme' => [
 				EntityTypeDefinitions::CONTENT_MODEL_ID => LexemeContent::CONTENT_MODEL_ID,
-				EntityTypeDefinitions::ENTITY_SEARCH_CALLBACK => 'original lexeme callback',
 			],
 			'form' => [
 				EntityTypeDefinitions::ENTITY_SEARCH_CALLBACK => 'original form callback',
@@ -45,9 +44,8 @@ class WikibaseRepoEntityTypesHookHandlerTest extends MediaWikiIntegrationTestCas
 
 		$this->assertSame( LexemeContent::CONTENT_MODEL_ID,
 			$entityTypeDefinitions['lexeme'][EntityTypeDefinitions::CONTENT_MODEL_ID] );
-		$lexemeCallback = $entityTypeDefinitions['lexeme'][EntityTypeDefinitions::ENTITY_SEARCH_CALLBACK];
-		$this->assertNotSame( 'original lexeme callback', $lexemeCallback );
-		$this->assertIsCallable( $lexemeCallback );
+		$lexemeSearchFieldDefs = $entityTypeDefinitions['lexeme'][EntityTypeDefinitions::SEARCH_FIELD_DEFINITIONS];
+		$this->assertIsCallable( $lexemeSearchFieldDefs );
 		$formCallback = $entityTypeDefinitions['form'][EntityTypeDefinitions::ENTITY_SEARCH_CALLBACK];
 		$this->assertNotSame( 'original form callback', $formCallback );
 		$this->assertIsCallable( $formCallback );
