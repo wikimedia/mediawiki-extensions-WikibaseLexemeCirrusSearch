@@ -65,6 +65,9 @@
 			"class": "Wikibase\\Lexeme\\Search\\Elastic\\Hooks\\WikibaseRepoEntityTypesHookHandler"
 		}
 	},
+	"ServiceWiringFiles": [
+		"WikibaseLexemeCirrusSearch.ServiceWiring.php"
+	],
 	"MessagesDirs": {
 		"WikibaseCirrusSearch": [
 			"i18n"
