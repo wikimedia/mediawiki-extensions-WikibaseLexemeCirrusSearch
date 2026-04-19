@@ -5,8 +5,8 @@ declare( strict_types = 1 );
 namespace Wikibase\Lexeme\Search\Elastic\Hooks;
 
 use MediaWiki\Search\Hook\ShowSearchHitHook;
+use MediaWiki\Search\SearchResult;
 use MediaWiki\Specials\SpecialSearch;
-use SearchResult;
 use Wikibase\Lexeme\Search\Elastic\LexemeResult;
 
 /**

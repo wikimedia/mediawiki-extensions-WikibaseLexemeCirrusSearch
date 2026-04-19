@@ -2,10 +2,10 @@
 namespace Wikibase\Lexeme\Search\Elastic;
 
 use CirrusSearch\Search\Result;
-use HtmlArmor;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\Language;
 use Wikibase\Lexeme\DataAccess\LexemeDescription;
+use Wikimedia\HtmlArmor\HtmlArmor;
 
 /**
  * Single CirrusSearch result for Lexeme fulltext search.
