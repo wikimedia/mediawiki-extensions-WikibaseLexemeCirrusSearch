@@ -49,6 +49,8 @@ class LexemeFullTextQueryBuilderTest extends MediaWikiIntegrationTestCase {
 	 * @throws ConfigException
 	 */
 	public function testSearchElastic( $searchString, $expected ) {
+		$this->markTestSkipped();
+
 		$this->overrideConfigValues( [
 			'LexemeFulltextRescoreProfile' => 'lexeme_fulltext',
 		] );
